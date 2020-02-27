@@ -27,12 +27,36 @@
       <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
       <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
     </ul>
+    <img alt="Vue logo" src="../assets/logo.png">
+
+    <div class="elenent">
+      <el-row>
+        <el-button icon="el-icon-search" circle></el-button>
+        <el-button type="primary" icon="el-icon-edit" circle></el-button>
+        <el-button type="success" icon="el-icon-check" circle></el-button>
+        <el-button type="info" icon="el-icon-message" circle></el-button>
+        <el-button type="warning" icon="el-icon-star-off" circle></el-button>
+        <el-button type="danger" icon="el-icon-delete" circle></el-button>
+      </el-row>
+    </div>
+
+    <router-link to="a"> a </router-link>
+    <router-link :to="{name:'Login'}"> Login </router-link>
+
+    <AxiosTest></AxiosTest>
+    <AxiosPackage/>
   </div>
 </template>
 
 <script>
+import AxiosTest from '../test/AxiosTest.vue'
+import AxiosPackage from '../test/AxiosPackageTest'
 export default {
   name: 'HelloWorld',
+  components: {
+    AxiosTest,
+    AxiosPackage
+  },
   props: {
     msg: String
   }
