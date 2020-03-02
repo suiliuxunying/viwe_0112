@@ -45,15 +45,18 @@
 
     <AxiosTest></AxiosTest>
     <AxiosPackage/>
+    <StoreTest/>
   </div>
 </template>
 
 <script>
+import StoreTest from '../test/StoreTest'
 import AxiosTest from '../test/AxiosTest.vue'
 import AxiosPackage from '../test/AxiosPackageTest'
 export default {
   name: 'HelloWorld',
   components: {
+    StoreTest,
     AxiosTest,
     AxiosPackage
   },

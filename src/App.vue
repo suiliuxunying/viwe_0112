@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <router-view/>
-    <h1>11</h1>
+    <food>为了确定页面正常加载 开发结束记得删</food>
   </div>
 </template>
 

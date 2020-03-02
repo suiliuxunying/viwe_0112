@@ -8,6 +8,11 @@ export default new Router({
   mode: 'history',
   routes: [
     {
+      // 其实应该到主页，但是还没有主页 也没有token认证
+      path: '/',
+      redirect: '/View/Login'
+    },
+    {
       path: '/a',
       name: 'HelloWorld',
       component: HelloWorld
