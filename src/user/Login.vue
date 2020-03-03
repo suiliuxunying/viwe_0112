@@ -35,7 +35,6 @@
 </template>
 
 <script>
-import Axios from 'axios'
 export default {
   name: 'Login',
   data () {
@@ -60,7 +59,7 @@ export default {
       }
     }
     return {
-
+      loading: false,
       ruleForm: {
         admin: '',
         pass: ''
@@ -79,23 +78,17 @@ export default {
     submitForm (formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          alert('submit!')
-          // const _this = this// 很重要！！
-          Axios({
-            method: 'post',
-            baseURL: '/api',
-            url: '/user',
-            data: this.$data.ruleForm
-          })
-            .then(function (response) {
-              console.log(response)
+          this.loading = true
+          this.$store.dispatch('user/login', this.loginForm)
+            .then(() => {
+              this.$router.push({ path: '/View/MainPage' })
+              this.loading = false
             })
-            .catch(function (error) {
-              console.log('error:')
-              console.log(error)
+            .catch(() => {
+              this.loading = false
             })
         } else {
-          console.log('error submit!!')
+          alert('error submit!!')
           return false
         }
       })

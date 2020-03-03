@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import HelloWorld from '../components/HelloWorld.vue'
 import Login from '@/user/Login.vue'
 import View from '../components/View.vue'
+import MainPage from '../visual/MainPage.vue'
 Vue.use(Router)
 export default new Router({
   mode: 'history',
@@ -26,6 +27,11 @@ export default new Router({
           path: 'Login',
           name: 'Login',
           component: Login
+        },
+        {
+          path: 'MainPage',
+          name: 'MainPage',
+          component: MainPage
         }
       ]
     }

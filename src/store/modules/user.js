@@ -1,44 +1,49 @@
+import { getToken, removeToken, setToken } from '@/utils/auth'
+import { login } from '@/api/user'
 const state = {
-//   token: getToken(),
-//   name: '',
-//   avatar: '',
-//   introduction: '',
-//   roles: []
+  token: getToken(),
+  name: '',
+  avatar: '',
+  introduction: '',
+  roles: []
 }
 
 const mutations = {
-//   SET_TOKEN: (state, token) => {
-//     state.token = token
-//   },
-//   SET_INTRODUCTION: (state, introduction) => {
-//     state.introduction = introduction
-//   },
-//   SET_NAME: (state, name) => {
-//     state.name = name
-//   },
-//   SET_AVATAR: (state, avatar) => {
-//     state.avatar = avatar
-//   },
-//   SET_ROLES: (state, roles) => {
-//     state.roles = roles
-//   }
+  SET_TOKEN: (state, token) => {
+    state.token = token
+  },
+  SET_INTRODUCTION: (state, introduction) => {
+    state.introduction = introduction
+  },
+  SET_NAME: (state, name) => {
+    state.name = name
+  },
+  SET_AVATAR: (state, avatar) => {
+    state.avatar = avatar
+  },
+  SET_ROLES: (state, roles) => {
+    state.roles = roles
+  }
 }
 
 const actions = {
-//   // user login
-//   login ({ commit }, userInfo) {
-//     const { username, password } = userInfo
-//     return new Promise((resolve, reject) => {
-//       login({ username: username.trim(), password: password }).then(response => {
-//         const { data } = response
-//         commit('SET_TOKEN', data.token)
-//         setToken(data.token)
-//         resolve()
-//       }).catch(error => {
-//         reject(error)
-//       })
-//     })
-//   },
+  // user login
+  login ({ commit }, userInfo) {
+    //   ??
+    const { username, password } = userInfo
+    return new Promise((resolve, reject) => {
+    // 传参到 api
+      login({ username: username.trim(), password: password }).then(response => {
+        const { data } = response
+        commit('SET_TOKEN', data.token)
+        // 存cookie
+        setToken(data.token)
+        resolve()
+      }).catch(error => {
+        reject(error)
+      })
+    })
+  },
 
   //   // get user info
   //   getInfo ({ commit, state }) {
@@ -88,15 +93,17 @@ const actions = {
   //     })
   //   },
 
-  //   // remove token
-  //   resetToken ({ commit }) {
-  //     return new Promise(resolve => {
-  //       commit('SET_TOKEN', '')
-  //       commit('SET_ROLES', [])
-  //       removeToken()
-  //       resolve()
-  //     })
-  //   },
+  // remove token
+  resetToken ({ commit }) {
+    //   https://vuex.vuejs.org/zh/guide/actions.html
+    // Promise 是action的返回函数 这样写 保证promise()中的代码执行完才返回
+    return new Promise(resolve => {
+      commit('SET_TOKEN', '')
+      //   commit('SET_ROLES', [])
+      removeToken()
+      resolve()
+    })
+  }
 
   //   // dynamically modify permissions
   //   changeRoles ({ commit, dispatch }, role) {

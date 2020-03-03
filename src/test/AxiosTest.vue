@@ -2,6 +2,7 @@
  <div class="hello">
     <h1>{{ msg }}</h1>
     <el-button @click="test(Data)">Axios</el-button>
+     <el-divider><i class="el-icon-mobile-phone"></i></el-divider>
   </div>
 </template>
 

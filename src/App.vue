@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <router-view/>
-    <food>为了确定页面正常加载 开发结束记得删</food>
+    <footer>为了确定页面正常加载 开发结束记得删</footer>
   </div>
 </template>
 
