@@ -11,8 +11,8 @@
           label-position="top"
         >
 
-          <el-form-item  prop="admin">
-            <el-input v-model="ruleForm.admin" autocomplete="off"
+          <el-form-item  prop="userId">
+            <el-input v-model="ruleForm.userId" autocomplete="off"
             placeholder="请输入账号"
              clearable
              prefix-icon="el-icon-user"
@@ -38,7 +38,7 @@
 export default {
   name: 'Login',
   data () {
-    var validateadmin = (rule, value, callback) => {
+    var validateuserId = (rule, value, callback) => {
       if (value === '') {
         callback(new Error('请输入账号'))
       } else {
@@ -61,12 +61,12 @@ export default {
     return {
       loading: false,
       ruleForm: {
-        admin: '',
-        pass: ''
+        userId: '1',
+        pass: '1'
       },
       rules: {
-        admin: [
-          { validator: validateadmin, trigger: 'blur' }
+        userId: [
+          { validator: validateuserId, trigger: 'blur' }
         ],
         pass: [
           { validator: validatePass, trigger: 'blur' }
@@ -75,17 +75,18 @@ export default {
     }
   },
   methods: {
-    submitForm (formName) {
-      this.$refs[formName].validate((valid) => {
+    submitForm (ruleForm) {
+      this.$refs[ruleForm].validate((valid) => {
         if (valid) {
           this.loading = true
-          this.$store.dispatch('user/login', this.loginForm)
+          console.log(this.ruleForm)// 为啥必须要this.ruleForm
+          this.$store.dispatch('login', this.ruleForm)
             .then(() => {
               this.$router.push({ path: '/View/MainPage' })
               this.loading = false
             })
-            .catch(() => {
-              this.loading = false
+            .catch(error => {
+              console.log(error)
             })
         } else {
           alert('error submit!!')

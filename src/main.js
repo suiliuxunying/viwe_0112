@@ -15,6 +15,7 @@ Vue.use(VueAxios, axios)
 Vue.config.productionTip = false
 // element使用第三行
 Vue.use(ElementUI)
+
 new Vue({
   // 1.router使用第二行
   router,

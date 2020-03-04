@@ -30,11 +30,12 @@ const actions = {
   // user login
   login ({ commit }, userInfo) {
     //   ??
-    const { username, password } = userInfo
+    const { userId, pass } = userInfo
     return new Promise((resolve, reject) => {
     // 传参到 api
-      login({ username: username.trim(), password: password }).then(response => {
-        const { data } = response
+
+      login({ userId: userId, password: pass }).then(response => {
+        const data = response
         commit('SET_TOKEN', data.token)
         // 存cookie
         setToken(data.token)

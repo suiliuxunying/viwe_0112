@@ -4,8 +4,9 @@ import HelloWorld from '../components/HelloWorld.vue'
 import Login from '@/user/Login.vue'
 import View from '../components/View.vue'
 import MainPage from '../visual/MainPage.vue'
+import { getToken } from '../utils/auth'
 Vue.use(Router)
-export default new Router({
+const router = new Router({
   mode: 'history',
   routes: [
     {
@@ -37,3 +38,14 @@ export default new Router({
     }
   ]
 })
+router.beforeEach((to, from, next) => {
+  // console.log(to.path)
+  if (to.path !== '/View/Login') {
+    console.log(getToken())
+    if (getToken() === null) {
+      return next({ path: '/View/Login' })
+    }
+  }
+  next()
+})
+export default router

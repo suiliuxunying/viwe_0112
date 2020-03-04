@@ -25,7 +25,7 @@
         "name": "Launch Chrome against localhost",
         "port": 9222,
         "webRoot": "${workspaceRoot}/src",
-        "url": "http://localhost:8080/a/#/",　
+        "url": "http://localhost:8080/View/MainPage",　
         "sourceMaps": true,
         "sourceMapPathOverrides": {
           "webpack:///src/*": "${webRoot}/*"
