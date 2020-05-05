@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
+// 5.echarts
+import echarts from 'echarts'
 // 4.store使用第一行
 import store from './store/index'
 // 1.router使用第一行（当然这是个文件）
@@ -11,6 +13,8 @@ import 'element-ui/lib/theme-chalk/index.css'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 Vue.use(VueAxios, axios)
+// 5.
+Vue.prototype.$echarts = echarts
 
 Vue.config.productionTip = false
 // element使用第三行

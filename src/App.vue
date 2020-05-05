@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <router-view/>
+    <router-view  style="min-height:800px;" />
     <footer>为了确定页面正常加载 开发结束记得删</footer>
   </div>
 </template>
@@ -27,5 +27,6 @@ body{
   text-align: center;
   color: #2c3e50;
   /* margin-top: 60px; */
+  min-width: 1070px;
 }
 </style>

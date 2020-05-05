@@ -3,8 +3,11 @@ import Router from 'vue-router'
 import HelloWorld from '../components/HelloWorld.vue'
 import Login from '@/user/Login.vue'
 import View from '../components/View.vue'
+import Main from '../components/Main'
 import MainPage from '../visual/MainPage.vue'
-import { getToken } from '../utils/auth'
+import RealTime from '../visual/components/RealTime.vue'
+import MakeCurve from '../visual/components/MakeCurve'
+// import { getToken } from '../utils/auth'
 Vue.use(Router)
 const router = new Router({
   mode: 'history',
@@ -30,6 +33,28 @@ const router = new Router({
           component: Login
         },
         {
+          path: 'Main',
+          name: 'Main',
+          component: Main,
+          children: [
+            {
+              path: 'MainPage',
+              name: 'MainPage',
+              component: MainPage
+            },
+            {
+              path: 'RealTime',
+              name: 'RealTime',
+              component: RealTime
+            },
+            {
+              path: 'MakeCurve',
+              name: 'MakeCurve',
+              component: MakeCurve
+            }
+          ]
+        },
+        {
           path: 'MainPage',
           name: 'MainPage',
           component: MainPage
@@ -38,14 +63,14 @@ const router = new Router({
     }
   ]
 })
-router.beforeEach((to, from, next) => {
-  // console.log(to.path)
-  if (to.path !== '/View/Login') {
-    console.log(getToken())
-    if (getToken() === null) {
-      return next({ path: '/View/Login' })
-    }
-  }
-  next()
-})
+// router.beforeEach((to, from, next) => {
+//   // console.log(to.path)
+//   if (to.path !== '/View/Login') {
+//     console.log(getToken())
+//     if (getToken() === null) {
+//       return next({ path: '/View/Login' })
+//     }
+//   }
+//   next()
+// })
 export default router

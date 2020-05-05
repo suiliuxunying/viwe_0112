@@ -47,6 +47,7 @@
     <AxiosPackage/>
     <StoreTest/>
     <RouterTest/>
+    <Chartest/>
   </div>
 </template>
 
@@ -55,13 +56,15 @@ import StoreTest from '../test/StoreTest'
 import AxiosTest from '../test/AxiosTest.vue'
 import AxiosPackage from '../test/AxiosPackageTest'
 import RouterTest from '../test/RouterTest'
+import Chartest from '../test/Chartest'
 export default {
   name: 'HelloWorld',
   components: {
     StoreTest,
     AxiosTest,
     AxiosPackage,
-    RouterTest
+    RouterTest,
+    Chartest
   },
   props: {
     msg: String
