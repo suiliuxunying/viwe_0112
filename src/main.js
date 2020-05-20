@@ -9,6 +9,10 @@ import router from './router/index'
 // 2.element使用的前两行
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
+
+// 文件部分的样式
+import 'iview/dist/styles/iview.css'
+
 // 3.axios使用的三行
 import axios from 'axios'
 import VueAxios from 'vue-axios'

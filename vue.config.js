@@ -1,6 +1,8 @@
 module.exports = {
+  // 关闭eslint规范
+  // lintOnSave:false,
   devServer: {
-    port: 8080,
+    port: 8090,
     proxy: {
       '/api': {
         target: 'http://localhost:9090/file_service', // target host

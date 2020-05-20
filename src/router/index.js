@@ -7,6 +7,8 @@ import Main from '../components/Main'
 import MainPage from '../visual/MainPage.vue'
 import RealTime from '../visual/components/RealTime.vue'
 import MakeCurve from '../visual/components/MakeCurve'
+import User from '../user/UserMain'
+import FileHome from '../file/FileMain'
 // import { getToken } from '../utils/auth'
 Vue.use(Router)
 const router = new Router({
@@ -43,6 +45,11 @@ const router = new Router({
               component: MainPage
             },
             {
+              path: 'User',
+              name: 'User',
+              component: User
+            },
+            {
               path: 'RealTime',
               name: 'RealTime',
               component: RealTime
@@ -51,8 +58,12 @@ const router = new Router({
               path: 'MakeCurve',
               name: 'MakeCurve',
               component: MakeCurve
-            }
-          ]
+            },
+            {
+              path: 'FileHome',
+              name: 'FileHome',
+              component: FileHome
+            }]
         },
         {
           path: 'MainPage',
