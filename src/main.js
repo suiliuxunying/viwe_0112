@@ -17,6 +17,9 @@ import 'iview/dist/styles/iview.css'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 Vue.use(VueAxios, axios)
+// session相关
+axios.defaults.withCredentials = true
+
 // 5.
 Vue.prototype.$echarts = echarts
 

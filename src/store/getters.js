@@ -13,6 +13,7 @@ const getters = {
   // permission_routes: state => state.permission.routes,
   // errorLogs: state => state.errorLog.logs
   nameString: state => state.test.name + '111',
-  token: state => state.user.token
+  token: state => state.user.token,
+  bucketList: state => state.file.bucketList
 }
 export default getters

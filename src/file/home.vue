@@ -1,34 +1,32 @@
 <template>
   <div style="display: flex;width: 100%; height: 100%;">
     <div style="height: 100%;">
-      <!-- <side-bar/> -->
     </div>
     <div style="flex: 1; background: #fff; display: flex; flex-direction: column;">
+
       <tool-bar/>
+
       <div class="checkAll">
         <Checkbox size="large" :value="checkAll" @on-change="checkAllHandle">全选</Checkbox>
         <span>已选中{{checkedLen}}个文件/文件夹</span>
       </div>
+
       <Container/>
+
     </div>
   </div>
 </template>
 
 <script>
 import ToolBar from './components/toolBar'
-// import SideBar from './components/sideBar'
-import Container from './components/container'
-// import { Layout, Row, Checkbox } from 'iview'
+import Container from './components/Container1'
 import { Checkbox } from 'iview'
 
 export default {
   name: 'home',
   components: {
-    // Layout,
     Container,
     ToolBar,
-    // SideBar,
-    // Row,
     Checkbox
   },
   computed: {

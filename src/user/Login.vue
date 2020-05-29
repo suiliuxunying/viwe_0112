@@ -77,14 +77,14 @@ export default {
   methods: {
     submitForm (ruleForm) {
       // 无限制跳转 注意注释掉
-      this.$router.push({ path: '/View/main/MainPage' })
+      // this.$router.push({ path: '/View/main/MainPage' })
       this.$refs[ruleForm].validate((valid) => {
         if (valid) {
           this.loading = true
           console.log(this.ruleForm)// 为啥必须要this.ruleForm
           this.$store.dispatch('login', this.ruleForm)
             .then(() => {
-              this.$router.push({ path: '/View//main/MainPage' })
+              this.$router.push({ path: '/View/main/MainPage' })
               this.loading = false
             })
             .catch(error => {

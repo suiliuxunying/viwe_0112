@@ -26,6 +26,7 @@ export default {
       return this.$store.state.test.name
     },
     storeGetter () {
+      // 要获取的变量 写在getters里面 这样获取
       return this.$store.getters.nameString
     }
   },

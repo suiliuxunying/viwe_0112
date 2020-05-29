@@ -1,6 +1,6 @@
 
 import { data, getAllParents, rankTime, getChildrenById, deleteItemById, getCheckedFileFromBuffer, clock } from '../data'
-
+import { getBucketList } from '../../api/file'
 const state = {
   data: data,
   currentListId: 0, // 当前文件的id
@@ -10,7 +10,13 @@ const state = {
   view: 'thumbnail',
   rank: 'name',
   checkAll: false,
-  type: 'folder'
+  type: 'folder',
+  bucketList: []
+}
+const mutations = {
+  SET_bucketList: (state, bucketList) => {
+    state.bucketList = bucketList
+  }
 }
 
 const getters = {
@@ -32,7 +38,20 @@ const getters = {
   }
 }
 
-const mutations = {
+const actions = {
+  getBucket ({ commit }) {
+    return new Promise((resolve, reject) => {
+      // 传参到 api
+      getBucketList().then(response => {
+        // const data = response
+        console.log(response)
+        commit('SET_bucketList', response)
+      }).catch(error => {
+        reject(error)
+      })
+    })
+  },
+
   changeData (state, payload) {
     const newData = payload.newData
     newData.name = payload.newName
@@ -165,6 +184,6 @@ export default {
   //   namespaced: true, //应该是分模块避免同名 用的
   state,
   getters,
-  mutations
-  // actions
+  mutations,
+  actions
 }
