@@ -31,9 +31,10 @@ const actions = {
   login ({ commit }, userInfo) {
     //   ??
     commit('SET_NAME', userInfo.userId)
+    // login.vue中的命名
     const { userId, pass } = userInfo
     return new Promise((resolve, reject) => {
-      // 传参到 api
+      // 传参到 api  //需要接收的命名
       login({ username: userId, password: pass }).then(response => {
         const data = response
         console.log(response)

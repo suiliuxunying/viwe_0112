@@ -6,28 +6,29 @@
 
       <tool-bar/>
 
-      <div class="checkAll">
+      <!-- <div class="checkAll">
         <Checkbox size="large" :value="checkAll" @on-change="checkAllHandle">全选</Checkbox>
         <span>已选中{{checkedLen}}个文件/文件夹</span>
-      </div>
+      </div> -->
 
-      <Container/>
+      <!-- <Container/> -->
+      <router-view :key="$route.fullPath" />
 
     </div>
   </div>
 </template>
 
 <script>
-import ToolBar from './components/toolBar'
-import Container from './components/Container1'
-import { Checkbox } from 'iview'
+import ToolBar from './components/ToolBar1'
+// import Container from './components/Container1'
+// import { Checkbox } from 'iview'
 
 export default {
   name: 'home',
   components: {
-    Container,
-    ToolBar,
-    Checkbox
+    // Container,
+    ToolBar
+    // Checkbox
   },
   computed: {
     checkAll () {

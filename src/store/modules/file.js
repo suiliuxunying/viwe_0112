@@ -1,6 +1,7 @@
 
 import { data, getAllParents, rankTime, getChildrenById, deleteItemById, getCheckedFileFromBuffer, clock } from '../data'
-import { getBucketList } from '../../api/file'
+import { getBucketList, getObjectlistdir } from '../../api/file'
+import { switchDate } from '../../utils/utils'
 const state = {
   data: data,
   currentListId: 0, // 当前文件的id
@@ -11,14 +12,41 @@ const state = {
   rank: 'name',
   checkAll: false,
   type: 'folder',
-  bucketList: []
+
+  bucketList: [],
+  objectListDir: [],
+  routes: []
 }
 const mutations = {
   SET_bucketList: (state, bucketList) => {
+    bucketList.forEach(bucket => {
+      bucket.createTime = switchDate(bucket.createTime)
+    })
     state.bucketList = bucketList
+    console.log(state)
+  },
+  SET_objectListDir: (state, fileDir) => {
+    fileDir.objectList.forEach(dir => {
+      dir.lastModifyTime = switchDate(dir.lastModifyTime)
+    })
+    state.objectListDir = fileDir.objectList
+    console.log(state)
+  },
+  PUSH_route: (state, route) => {
+    state.routes.push(route)
+    console.log(state.routes)
+  },
+  POP_route: (state, dir) => {
+    if (dir === '') state.routes = []
+    else {
+      while (state.routes[state.routes.length - 1].query.dir !== dir) {
+        state.routes.pop()
+      }
+    }
+    console.log(state.routes)
   }
-}
 
+}
 const getters = {
   breakcrumb (state) {
     const data = getAllParents(state.data, state.currentListId)
@@ -39,6 +67,7 @@ const getters = {
 }
 
 const actions = {
+
   getBucket ({ commit }) {
     return new Promise((resolve, reject) => {
       // 传参到 api
@@ -46,6 +75,21 @@ const actions = {
         // const data = response
         console.log(response)
         commit('SET_bucketList', response)
+        resolve()
+      }).catch(error => {
+        reject(error)
+      })
+    })
+  },
+  getObjectlistdir ({ commit }, data) {
+    return new Promise((resolve, reject) => {
+      const { dir, bucket } = data
+      // 传参到 api
+      getObjectlistdir({ dir: dir, bucket: bucket }).then(response => {
+        // const data = response
+        console.log(response)
+        commit('SET_objectListDir', response)
+        resolve()
       }).catch(error => {
         reject(error)
       })

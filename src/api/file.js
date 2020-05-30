@@ -58,6 +58,14 @@ export function getObject () {
 
   })
 }
+export function getObjectlistdir (data) {
+  return request({
+    url: '/hos/v1/object/list/dir',
+    method: 'get',
+    params: data
+
+  })
+}
 export function getObjectList () {
   return request({
     url: '/hos/v1/object/list',

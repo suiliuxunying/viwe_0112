@@ -9,6 +9,8 @@ import RealTime from '../visual/components/RealTime.vue'
 import MakeCurve from '../visual/components/MakeCurve'
 import User from '../user/UserMain'
 import FileHome from '../file/FileMain'
+import BucketList from '../file/components/Container1'
+import File from '../file/components/ContainerCh'
 // import { getToken } from '../utils/auth'
 Vue.use(Router)
 const router = new Router({
@@ -62,7 +64,19 @@ const router = new Router({
             {
               path: 'FileHome',
               name: 'FileHome',
-              component: FileHome
+              component: FileHome,
+              children: [
+                {
+                  path: 'BucketList',
+                  name: 'BucketList',
+                  component: BucketList
+                },
+                {
+                  path: 'File',
+                  name: 'Flie',
+                  component: File
+                }
+              ]
             }]
         },
         {

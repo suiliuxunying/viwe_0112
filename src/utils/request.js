@@ -83,12 +83,16 @@ service.interceptors.response.use(
           })
         })
       } else {
-        Message({
-          showClose: true,
-          message: res.message + '   错误代码：' + res.Code,
-          type: 'error',
-          duration: 5 * 1000
-        })
+        if (res.Code != null) {
+          Message({
+            showClose: true,
+            message: res.message + '   错误代码：' + res.Code,
+            type: 'error',
+            duration: 5 * 1000
+          })
+        } else { // 后端不规范所导致的 有的没有给状态码
+          return res
+        }
       }
       return Promise.reject(new Error(res.message || 'Error'))
     } else {

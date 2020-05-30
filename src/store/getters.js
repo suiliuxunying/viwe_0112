@@ -14,6 +14,8 @@ const getters = {
   // errorLogs: state => state.errorLog.logs
   nameString: state => state.test.name + '111',
   token: state => state.user.token,
-  bucketList: state => state.file.bucketList
+  bucketList: state => state.file.bucketList,
+  objectListDir: state => state.file.objectListDir,
+  routes: state => state.file.routes
 }
 export default getters

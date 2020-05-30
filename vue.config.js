@@ -5,7 +5,7 @@ module.exports = {
     port: 8090,
     proxy: {
       '/api': {
-        target: 'http://localhost:9090/file_service', // target host
+        target: 'http://localhost:9080', // target host
         ws: true, // proxy websockets
         changeOrigin: true, // needed for virtual hosted sites
         pathRewrite: {

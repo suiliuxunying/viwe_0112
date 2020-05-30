@@ -1,7 +1,8 @@
 <template>
  <div class="hello">
    <el-table
-    :data="bucketList.filter(data => !search || data.bucketName.toLowerCase().includes(search.toLowerCase()))"
+    :data="objectListDir.filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()))"
+
     ref="multipleTable"
     tooltip-effect="dark"
     @row-dblclick="rowDblclick"
@@ -11,12 +12,13 @@
 
     <el-table-column
       type="selection"
+       align="left"
       width="55">
     </el-table-column>
 
     <el-table-column
-      prop="bucketName"
-      label="文件库名"
+      prop="name"
+      label="名称"
       sortable
       width="180">
       <!-- 还有机会这里加上图片 名称靠id筛选出来 -->
@@ -28,23 +30,32 @@
 
     </el-table-column>
       <el-table-column
-      prop="creator"
-      label="创建人"
+      prop="attrs"
+      label="属性"
       sortable
       width="180">
     </el-table-column>
 
     <el-table-column
-      prop="createTime"
-      label="创建时间"
+      prop="lastModifyTime"
+      label="编辑时间"
       sortable
       width="180">
     </el-table-column>
     <el-table-column
-      prop="detail"
-      label="描述">
+      sortable
+      prop="length"
+      label="长度">
     </el-table-column>
-
+    <el-table-column
+      sortable
+      prop="mediaType"
+      label="类型">
+    </el-table-column><el-table-column
+      sortable
+      prop="contentEncoding"
+      label="编码">
+    </el-table-column>
      <el-table-column
       align="right">
       <template slot="header">
@@ -73,7 +84,7 @@
 <script>
 export default {
   // 改名字
-  name: 'Container1',
+  name: 'ContainerCh',
   props: {
     // msg: String
   },
@@ -81,43 +92,50 @@ export default {
     return {
       search: '',
       multipleSelection: [],
-      bucketList: [{
-        creator: '小明',
-        bucketId: '1',
-        createTime: '2016-05-02',
-        bucketName: '王小虎',
-        detail: '上海市普陀区金沙江路 1518 弄'
+      objectListDir: [{
+        attrs: null,
+        bucket: 'jerrybucket2',
+        contentEncoding: null,
+        id: null,
+        key: '/dir1/',
+        lastModifyTime: '2020-05-27 17:35:53',
+        length: 0,
+        mediaType: '',
+        name: 'dir1',
+        route: this.$route.path
       }]
     }
   },
   mounted () {
-    this.$store.dispatch('getBucket')
+    this.$store.dispatch('getObjectlistdir', { bucket: this.$route.query.bucket, dir: this.$route.query.dir })
       .then(() => {
-        this.bucketList = this.$store.getters.bucketList
+        this.objectListDir = this.$store.getters.objectListDir
         console.log(this.$store.getters)
       })
       .catch(error => {
         console.log(error)
       })
-      // 面包屑
-    this.$store.commit('POP_route', '')
+    this.$store.commit('POP_route', this.$route.query.dir)
   },
   methods: {
     // 当某一行被双击时会触发该事件 //进入bucket
     rowDblclick (row, column, event) {
-      console.log(row, column)
-      const bucket = row.bucketName
-      this.$router.push({
-        path: '/View/main/FileHome/File',
-        query: { bucket: bucket, dir: '/' }
-      })
-      this.$store.commit('PUSH_route', {
-        path: '/View/main/FileHome/File',
-        name: bucket,
-        query: { bucket: bucket, dir: '/' }
-      })
+      console.log(row)
+      if (row.length === 0) {
+        // 不是文件 跳转
+        const bucket = row.bucket
+        const dir = row.key
+        this.$router.push({
+          path: '/View/main/FileHome/File',
+          query: { bucket: bucket, dir: dir }
+        })
+        this.$store.commit('PUSH_route', {
+          path: '/View/main/FileHome/File',
+          name: row.name,
+          query: { bucket: bucket, dir: dir }
+        })
+      }
     },
-
     handleEdit (index, row) {
       console.log(index, row)
     },
