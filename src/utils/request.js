@@ -16,7 +16,7 @@ const service = axios.create({
   // baseURL: process.env.VUE_APP_BASE_API, // url = base url + request url
   // withCredentials: true, // send cookies when cross-domain requests
 
-  timeout: 10000, // request timeout
+  timeout: 30000, // request timeout
 
   // 默认不是这个不能用json
   headers: { 'Content-Type': 'application/json' }
@@ -101,6 +101,8 @@ service.interceptors.response.use(
     }
   },
   err => {
+    console.log(err)
+    console.log(err.response)
     if (err && err.response) {
       console.log('err')
       console.log(err.request)

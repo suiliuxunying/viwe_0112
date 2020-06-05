@@ -1,6 +1,6 @@
 
 import { data, getAllParents, rankTime, getChildrenById, deleteItemById, getCheckedFileFromBuffer, clock } from '../data'
-import { getBucketList, getObjectlistdir } from '../../api/file'
+import { getBucketList, getObjectlistdir, createBucket, deleteBucket, updateBucket } from '../../api/file'
 import { switchDate } from '../../utils/utils'
 const state = {
   data: data,
@@ -15,26 +15,31 @@ const state = {
 
   bucketList: [],
   objectListDir: [],
-  routes: []
+  routes: [],
+  isBucketDir: true
 }
 const mutations = {
+  SET_isBucketDir: (state, abool) => {
+    console.log('SET_isBucketDir:' + abool)
+    state.isBucketDir = abool
+  },
   SET_bucketList: (state, bucketList) => {
     bucketList.forEach(bucket => {
       bucket.createTime = switchDate(bucket.createTime)
     })
     state.bucketList = bucketList
-    console.log(state)
+    // console.log(state)
   },
   SET_objectListDir: (state, fileDir) => {
     fileDir.objectList.forEach(dir => {
       dir.lastModifyTime = switchDate(dir.lastModifyTime)
     })
     state.objectListDir = fileDir.objectList
-    console.log(state)
+    // console.log(state)
   },
   PUSH_route: (state, route) => {
     state.routes.push(route)
-    console.log(state.routes)
+    // console.log(state.routes)
   },
   POP_route: (state, dir) => {
     if (dir === '') state.routes = []
@@ -43,7 +48,7 @@ const mutations = {
         state.routes.pop()
       }
     }
-    console.log(state.routes)
+    // console.log(state.routes)
   }
 
 }
@@ -72,10 +77,49 @@ const actions = {
     return new Promise((resolve, reject) => {
       // 传参到 api
       getBucketList().then(response => {
+        // console.log(response)
+        commit('SET_bucketList', response.data)
+        resolve()
+      }).catch(error => {
+        reject(error)
+      })
+    })
+  },
+
+  updateBucket ({ commit }) {
+    return new Promise((resolve, reject) => {
+      // 传参到 api
+      updateBucket().then(response => {
         // const data = response
-        console.log(response)
         commit('SET_bucketList', response)
         resolve()
+      }).catch(error => {
+        reject(error)
+      })
+    })
+  },
+  deleteBucket ({ commit }, data) {
+    return new Promise((resolve, reject) => {
+      const { bucket } = data
+      // 传参到 api
+      deleteBucket({ bucket: bucket }).then(response => {
+        // const data = response
+        resolve(response.message)
+      }).catch(error => {
+        reject(error)
+      })
+    })
+  },
+  createBucket ({ commit }, data) {
+    return new Promise((resolve, reject) => {
+      const { bucket, detail } = data
+      // 传参到 api
+      const formData = new FormData()
+      formData.append('bucket', bucket)
+      formData.append('detail', detail)
+      createBucket(formData).then(response => {
+        // const data = response
+        resolve(response.message)
       }).catch(error => {
         reject(error)
       })

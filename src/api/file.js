@@ -4,19 +4,22 @@ export function createBucket (data) {
   return request({
     url: '/hos/v1/bucket',
     method: 'post',
-    data
+    // 不知道有没有用
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    data: data
   })
 }
 export function deleteBucket (data) {
   return request({
     url: '/hos/v1/bucket',
     method: 'delete',
-    data
+    params: data
   })
 }
 export function updateBucket (data) {
   return request({
     url: '/hos/v1/bucket',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
     method: 'put',
     data
   })

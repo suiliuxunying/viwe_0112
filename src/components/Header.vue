@@ -7,7 +7,7 @@
       <el-menu-item index="/View/main/makeCurve">数据预测</el-menu-item>
       <!--<el-menu-item index="3">小区</el-menu-item>-->
       <!--<el-menu-item index="4">成交</el-menu-item>-->
-      <el-menu-item index="/View/main/FileHome">文件服务</el-menu-item>
+      <el-menu-item index="/View/main/FileHome/BucketList">文件服务</el-menu-item>
 
       <el-menu-item  index="user"  style="float:right;">
         <el-button type="text" @click="userTo">👨‍{{userData.avatar}}的主页</el-button>

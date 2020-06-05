@@ -1,4 +1,4 @@
-// 变量重命名，方便使用吧
+
 const getters = {
   // sidebar: state => state.app.sidebar,
   // size: state => state.app.size,
@@ -16,6 +16,7 @@ const getters = {
   token: state => state.user.token,
   bucketList: state => state.file.bucketList,
   objectListDir: state => state.file.objectListDir,
-  routes: state => state.file.routes
+  routes: state => state.file.routes,
+  isBucketDir: (state) => state.file.isBucketDir
 }
 export default getters

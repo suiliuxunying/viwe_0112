@@ -54,8 +54,7 @@
           size="mini"
           placeholder="输入关键字搜索文件库"/>
       </template>
-      <template>
-      <!-- <template slot-scope="scope"> -->
+      <template slot-scope="scope">
         <el-button
           size="mini"
           @click="handleEdit(scope.$index, scope.row)">Edit</el-button>
@@ -71,6 +70,7 @@
 </template>
 
 <script>
+import { remove, loadingRun } from '../../utils/utils'
 export default {
   // 改名字
   name: 'Container1',
@@ -94,13 +94,14 @@ export default {
     this.$store.dispatch('getBucket')
       .then(() => {
         this.bucketList = this.$store.getters.bucketList
-        console.log(this.$store.getters)
+        // console.log(this.$store.getters)
       })
       .catch(error => {
         console.log(error)
       })
       // 面包屑
     this.$store.commit('POP_route', '')
+    this.$store.commit('SET_isBucketDir', true)
   },
   methods: {
     // 当某一行被双击时会触发该事件 //进入bucket
@@ -122,7 +123,22 @@ export default {
       console.log(index, row)
     },
     handleDelete (index, row) {
-      console.log(index, row)
+      const loading = loadingRun('数据库疯狂响应中...')
+      this.$store.dispatch('deleteBucket', { bucket: row.bucketName })
+        .then(message => {
+          loading.close()
+          this.$notify({
+            title: '提示',
+            message: '删除文件库:' + message
+          })
+          this.bucketList = remove(this.bucketList, row)
+        })
+        .catch(error => {
+          this.$notify({
+            title: '提示',
+            message: '删除文件库出错' + error
+          })
+        })
     }
   }
 }

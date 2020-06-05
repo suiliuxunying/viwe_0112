@@ -16,6 +16,9 @@ import 'iview/dist/styles/iview.css'
 // 3.axios使用的三行
 import axios from 'axios'
 import VueAxios from 'vue-axios'
+// 6.
+// import cors from 'koa2-cors'
+
 Vue.use(VueAxios, axios)
 // session相关
 axios.defaults.withCredentials = true
@@ -26,6 +29,9 @@ Vue.prototype.$echarts = echarts
 Vue.config.productionTip = false
 // element使用第三行
 Vue.use(ElementUI)
+
+// 6.  处理跨域，放到中间件的最前面
+// Vue.use(cors)
 
 new Vue({
   // 1.router使用第二行

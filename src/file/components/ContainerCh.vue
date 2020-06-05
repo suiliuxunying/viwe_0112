@@ -82,6 +82,7 @@
 </template>
 
 <script>
+// import { stringifEnd } from '../../utils/utils'
 export default {
   // 改名字
   name: 'ContainerCh',
@@ -116,6 +117,7 @@ export default {
         console.log(error)
       })
     this.$store.commit('POP_route', this.$route.query.dir)
+    this.$store.commit('SET_isBucketDir', false)
   },
   methods: {
     // 当某一行被双击时会触发该事件 //进入bucket
@@ -140,7 +142,20 @@ export default {
       console.log(index, row)
     },
     handleDelete (index, row) {
-      console.log(index, row)
+    //   this.$store.dispatch('deleteBucket', row.bucket)
+    //     .then(message => {
+    //       this.$notify({
+    //         title: '提示',
+    //         message: '删除文件库:' + message
+    //         // this.objectListDir
+    //       })
+    //     })
+    //     .catch(error => {
+    //       this.$notify({
+    //         title: '提示',
+    //         message: '删除文件库出错' + error
+    //       })
+    //     })
     }
   }
 }

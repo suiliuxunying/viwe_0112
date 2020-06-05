@@ -25,6 +25,11 @@ export default {
       alert('submit!')
       console.log(data)
     }
+  },
+  watch: {
+    isBucketDir: function (val, oldVal) {
+      console.log(val + oldVal)
+    }
   }
 }
 </script>

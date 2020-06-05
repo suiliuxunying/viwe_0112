@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <router-view  style="min-height:800px;" />
-    <footer>为了确定页面正常加载 开发结束记得删</footer>
+    <footer>为了确定页面是否正常加载 开发结束记得删</footer>
   </div>
 </template>
 
