@@ -101,7 +101,7 @@ export function getFileType (fileName) {
     return 'video'
   }
   // 匹配 音频
-  const radiolist = ['mp3', 'wav', 'wmv']
+  const radiolist = ['mp3', 'wav', 'wmv', 'm4a']
   result = radiolist.find(item => item === suffix)
   if (result) {
     return 'radio'

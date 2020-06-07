@@ -38,7 +38,7 @@
 
       <div slot="footer" class="dialog-footer">
 
-        <el-button @click="dialogFormVisible2 = false">取 消</el-button>
+        <el-button @click="dialogFormVisible2 = false ;$router.go(0)">关 闭</el-button>
 
       </div>
     </el-dialog>
@@ -89,7 +89,7 @@ export default {
         .then((message) => {
           setTimeout(() => {
             loadingInstance.close()
-          }, 20000)
+          }, 2000)
           // 更新页面
           this.$router.go(0)
         })
