@@ -2,7 +2,7 @@
  <div class="hello">
       <el-card class="box-card">
         <div slot="header" class="clearfix">
-
+          <el-tag type="success">文件：</el-tag>
           <el-select v-model="data.fileName" placeholder="请选择分析文件">
             <el-option
               v-for="(item ,index) in fileNameList"
@@ -11,7 +11,9 @@
               :value="item">
             </el-option>
           </el-select>
-           <el-input-number v-model="data.step" :min="1" :max="100000" label="选择步长值"></el-input-number>
+          <el-tag type="success">步长值：</el-tag>
+           <el-input-number v-model="data.step" :min="3" :max="100000" label="选择步长值"></el-input-number>
+           <el-tag type="success">关键数据：</el-tag>
           <el-select v-model="data.keyValue" placeholder="请选择关键数据项">
             <el-option
               v-for="(value,key) in keyValueList"
@@ -20,6 +22,7 @@
               :value="value">
             </el-option>
           </el-select>
+
           <el-button type="primary" @click="drawLine">开始分析</el-button>
         </div>
         <div id="myChart1" style="min-height:600px;">
@@ -151,29 +154,32 @@ export default {
             stack: 'a',
             encode: { x: 'timestamp', y: 1 },
             name: '槽车的压力'
+          },
+          {
+            encode: { x: 'timestamp', y: 2 },
+            name: '槽车的液位',
+            symbol: 'none',
+            type: 'line'
+          }, {
+            encode: { x: 'timestamp', y: 4 },
+            name: '储罐的内部压力',
+            stack: 'a',
+            type: 'line'
+
+          }, {
+            encode: { x: 'timestamp', y: 5 },
+            name: '储罐的下位温度',
+            type: 'line'
+          }, {
+            encode: { x: 'timestamp', y: 6 },
+            name: '储罐的上位温度',
+            type: 'line'
+          },
+          {
+            encode: { x: 'timestamp', y: 3 },
+            name: '储罐的液位',
+            type: 'line'
           }
-          // {
-          //   encode: { x: 'timestamp', y: 2 },
-          //   name: '槽车的温度',
-          //   type: 'line'
-          // }, {
-          //   encode: { x: 'timestamp', y: 3 },
-          //   name: '储罐的内部压力',
-          //   type: 'line'
-          // }, {
-          //   encode: { x: 'timestamp', y: 4 },
-          //   name: '储罐的下位温度',
-          //   type: 'line'
-          // }, {
-          //   encode: { x: 'timestamp', y: 5 },
-          //   name: '储罐的上位温度',
-          //   type: 'line'
-          // },
-          // {
-          //   encode: { x: 'timestamp', y: 6 },
-          //   name: 'tankerPressure',
-          //   type: 'line'
-          // }
         ]
       }
       myChart1.setOption(optionMain1)

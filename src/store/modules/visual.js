@@ -62,7 +62,8 @@ const actions = {
       makeCurve({ path: 'C:/Users/10703/Desktop/' + fileName, step: step, keyValue: keyValue }).then(response => {
         // 返回的数据存入store
         const data = response
-        // console.log(data)
+        console.log('makeCurve:')
+        console.log(data)
         commit('SET_CurveData', data.list)
         resolve()
       }).catch(error => {

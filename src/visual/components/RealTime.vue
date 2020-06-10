@@ -2,6 +2,7 @@
  <div class="hello">
       <el-card class="box-card">
         <div slot="header" class="clearfix">
+          <el-tag type="success">关键数据：</el-tag>
           <el-select v-model="data.keyValue" placeholder="请选择关键数据项">
             <el-option
               v-for="(value,key) in keyValueList"
@@ -10,6 +11,7 @@
               :value="value">
             </el-option>
           </el-select>
+          <el-tag type="success">时间间隔：</el-tag>
           <el-input-number v-model="data.interval" :min="1" :max="100000" label="选择时间间隔（秒）"></el-input-number>
           <el-button type="primary" @click="drawLine">开始分析</el-button>
         </div>
@@ -81,9 +83,9 @@ export default {
       }
       myChart1.setOption(optionMain1)
       console.log(optionMain1)
-      this.updata(myChart1)
+      this.updata(myChart1, 1000 * this.data.interval)
     },
-    updata (myChart1) {
+    updata (myChart1, time) {
       const this_ = this
       setInterval(function () {
         this_.$store.dispatch('realTime', this_.data)
@@ -103,7 +105,7 @@ export default {
           .catch(error => {
             console.log(error)
           })
-      }, 500)
+      }, time)
     }
   }
 }

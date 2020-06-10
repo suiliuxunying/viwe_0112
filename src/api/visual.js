@@ -1,8 +1,8 @@
-import request from '@/utils/request'
+import request from '@/utils/request1'
 
 export function makeCurve (data) {
   return request({
-    url: '/sDataMakeCurve',
+    url: '/sDataMakeCurve2',
     method: 'post',
     data
   })

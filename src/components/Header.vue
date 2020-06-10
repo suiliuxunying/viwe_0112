@@ -5,9 +5,13 @@
       <el-menu-item index="/View/main/MainPage" style="font-size: 20px;margin-right:0px;" >🕋  装备作战数据分析平台</el-menu-item>
       <el-menu-item index="/View/main/RealTime" >数据分析</el-menu-item>
       <el-menu-item index="/View/main/makeCurve">数据预测</el-menu-item>
+      <el-menu-item index="/View/main/FileHome/BucketList">文件服务</el-menu-item>
+       <el-menu-item ><a href="http://vm0:50070" target="_blank">hadoop</a></el-menu-item>
+        <el-menu-item ><a href="http://vm0:5050" target="_blank">mesos</a></el-menu-item>
+         <el-menu-item ><a href="http://vm0:8080" target="_blank">marathon</a></el-menu-item>
+          <el-menu-item ><a href="http://vm0:60010">hbase</a></el-menu-item>
       <!--<el-menu-item index="3">小区</el-menu-item>-->
       <!--<el-menu-item index="4">成交</el-menu-item>-->
-      <el-menu-item index="/View/main/FileHome/BucketList">文件服务</el-menu-item>
 
       <el-menu-item  index="user"  style="float:right;">
         <el-button type="text" @click="userTo">👨‍{{userData.avatar}}的主页</el-button>
@@ -43,7 +47,8 @@ export default {
       state: false, // 0:未登录 1：登录
       activeIndex: 'MainPageMain',
       userData: {},
-      userState: 1
+      userState: 1,
+      ip: 'vm0'
     }
   },
   watch: {
