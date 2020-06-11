@@ -3,7 +3,7 @@
   <div style="">
 
     <div style="margin: 3vh 10vw;">
-      <el-input placeholder="请输入文件所在目录" v-model="uploadData.key">
+      <el-input placeholder="请输入文件所在目录" v-model="dir">
         <template slot="prepend">以"/"开头结尾</template>
       </el-input>
     </div>
@@ -52,7 +52,7 @@ export default {
   name: 'updata',
   data () {
     return {
-      dir: '/a/',
+      dir: this.$route.query.dir,
       limit: 2,
       action: 'http://localhost:9080/hos/v1/object',
       headers: {
@@ -102,7 +102,7 @@ export default {
       console.log('上传前')
       console.log(file)
       // 设置文件上传需要的参数
-      this.uploadData.key += file.name
+      this.uploadData.key = this.dir + file.name
       this.uploadData.mediaType = getFileType(file.name)
       this.message.error = ('文件类型为：' + file.type)
       this.loadingInstance = loadingRun('数据疯狂上传中...')

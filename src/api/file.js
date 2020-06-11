@@ -51,14 +51,15 @@ export function deleteObject (data) {
   return request({
     url: '/hos/v1/object',
     method: 'delete',
-    data
+    params: data
   })
 }
-export function getObject () {
+export function getObject (data) {
   return request({
     url: '/hos/v1/object/content',
-    method: 'get'
-
+    method: 'get',
+    responseType: 'arraybuffer', // 否则下载后不能打开（除了txt）
+    params: data
   })
 }
 export function getObjectlistdir (data) {

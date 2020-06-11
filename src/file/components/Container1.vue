@@ -134,6 +134,7 @@ export default {
           this.bucketList = remove(this.bucketList, row)
         })
         .catch(error => {
+          loading.close()
           this.$notify({
             title: '提示',
             message: '删除文件库出错' + error

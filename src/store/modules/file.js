@@ -1,6 +1,6 @@
 
 import { data, getAllParents, rankTime, getChildrenById, deleteItemById, getCheckedFileFromBuffer, clock } from '../data'
-import { getBucketList, getObjectlistdir, createBucket, deleteBucket, updateBucket } from '../../api/file'
+import { getObject, deleteObject, getBucketList, getObjectlistdir, createBucket, deleteBucket, updateBucket } from '../../api/file'
 import { switchDate } from '../../utils/utils'
 const state = {
   data: data,
@@ -139,7 +139,44 @@ const actions = {
       })
     })
   },
-
+  deleteObject ({ commit }, data) {
+    return new Promise((resolve, reject) => {
+      const { key, bucket } = data
+      // 传参到 api
+      deleteObject({ key: key, bucket: bucket }).then(response => {
+        // const data = response
+        // console.log(response)
+        resolve(response.message)
+      }).catch(error => {
+        reject(error)
+      })
+    })
+  },
+  getObject ({ commit }, data) {
+    return new Promise((resolve, reject) => {
+      const { key, bucket, name } = data
+      // 传参到 api
+      getObject({ key: key, bucket: bucket }).then(response => {
+        // 对于<a>标签，只有 Firefox 和 Chrome（内核） 支持 download 属性
+        // IE10以上支持blob但是依然不支持download
+        const content = response
+        const blob = new Blob([content])// 构造一个blob对象来处理数据
+        const fileName = name
+        if (window.navigator.msSaveOrOpenBlob) { // msSaveOrOpenBlob方法返回bool值
+          navigator.msSaveBlob(blob, fileName)// 本地保存
+        } else {
+          var link = document.createElement('a')// a标签下载
+          link.href = window.URL.createObjectURL(blob)
+          link.download = fileName
+          link.click()
+          window.URL.revokeObjectURL(link.href)
+        }
+        resolve('success')
+      }).catch(error => {
+        reject(error)
+      })
+    })
+  },
   changeData (state, payload) {
     const newData = payload.newData
     newData.name = payload.newName

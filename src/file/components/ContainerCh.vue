@@ -76,6 +76,7 @@
             type="primary"
             icon="el-icon-download"
             @click="handleExport(scope.row)"></el-button>
+            <!-- 下载 -->
         <el-button
           size="mini"
           @click="handleEdit(scope.$index, scope.row)">Edit</el-button>
@@ -92,6 +93,7 @@
 
 <script>
 // import { stringifEnd } from '../../utils/utils'
+import { loadingRun } from '../../utils/utils'
 export default {
   // 改名字
   name: 'ContainerCh',
@@ -151,23 +153,34 @@ export default {
       console.log(index, row)
     },
     handleExport (row) {
-
+      console.log(row)
+      this.$store.dispatch('getObject', { bucket: row.bucket, key: row.key, name: row.name })
+        .then((message) => {
+          console.log(message)
+        })
+        .catch(error => {
+          console.log(error)
+        })
     },
     handleDelete (index, row) {
-    //   this.$store.dispatch('deleteBucket', row.bucket)
-    //     .then(message => {
-    //       this.$notify({
-    //         title: '提示',
-    //         message: '删除文件库:' + message
-    //         // this.objectListDir
-    //       })
-    //     })
-    //     .catch(error => {
-    //       this.$notify({
-    //         title: '提示',
-    //         message: '删除文件库出错' + error
-    //       })
-    //     })
+      console.log(row)
+      const loading = loadingRun('数据库疯狂响应中...')
+      this.$store.dispatch('deleteObject', { bucket: row.bucket, key: row.key })
+        .then(message => {
+          loading.close()
+          this.$notify({
+            title: '提示',
+            message: '删除文件:' + message
+          })
+          this.objectListDir.splice(index, 1)
+        })
+        .catch(error => {
+          loading.close()
+          this.$notify({
+            title: '提示',
+            message: '删除文件出错' + error
+          })
+        })
     }
   }
 }

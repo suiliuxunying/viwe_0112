@@ -11,6 +11,11 @@ import User from '../user/UserMain'
 import FileHome from '../file/FileMain'
 import BucketList from '../file/components/Container1'
 import File from '../file/components/ContainerCh'
+import mainPage2 from '../components/mainPage2'
+import fileImport from '../file/fileImport'
+import fileSearch from '../file/fileSearch'
+import fileOperate from '../file/fileOperate'
+
 // import { getToken } from '../utils/auth'
 Vue.use(Router)
 const router = new Router({
@@ -46,6 +51,27 @@ const router = new Router({
               name: 'MainPage',
               component: MainPage
             },
+            // 新加的导航栏右侧页面 4个
+            {
+              path: 'MainPage2',
+              name: 'MainPage2',
+              component: mainPage2
+            },
+            {
+              path: 'fileImport',
+              name: 'fileImport',
+              component: fileImport
+            }, {
+              path: 'fileSearch',
+              name: 'fileSearch',
+              component: fileSearch
+            },
+            {
+              path: 'fileOperate',
+              name: 'fileOperate',
+              component: fileOperate
+            },
+
             {
               path: 'User',
               name: 'User',
