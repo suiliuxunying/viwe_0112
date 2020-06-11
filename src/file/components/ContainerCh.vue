@@ -32,8 +32,11 @@
       <el-table-column
       prop="attrs"
       label="属性"
-      sortable
-      width="180">
+      sortable>
+        <template slot-scope="scope" >
+        <p v-if="scope.row.length  > 0" style=""> <i class="el-icon-tickets"> 文件</i>
+        <p v-else> <i class="el-icon-folder-opened">目录 </i></p>
+          </template >
     </el-table-column>
 
     <el-table-column
@@ -56,8 +59,8 @@
       prop="contentEncoding"
       label="编码">
     </el-table-column>
-     <el-table-column
-      align="right">
+
+     <el-table-column width="220" >
       <template slot="header">
       <!-- <template slot="header" slot-scope="scope"> -->
         <el-input
@@ -65,8 +68,14 @@
           size="mini"
           placeholder="输入关键字搜索文件库"/>
       </template>
-      <template>
-      <!-- <template slot-scope="scope"> -->
+
+      <template slot-scope="scope" >
+         <el-button
+         v-if="scope.row.length > 0"
+           size="mini"
+            type="primary"
+            icon="el-icon-download"
+            @click="handleExport(scope.row)"></el-button>
         <el-button
           size="mini"
           @click="handleEdit(scope.$index, scope.row)">Edit</el-button>
@@ -141,6 +150,9 @@ export default {
     handleEdit (index, row) {
       console.log(index, row)
     },
+    handleExport (row) {
+
+    },
     handleDelete (index, row) {
     //   this.$store.dispatch('deleteBucket', row.bucket)
     //     .then(message => {
@@ -167,5 +179,4 @@ export default {
 h1 {
   margin: 40px 0 0;
 }
-
 </style>
