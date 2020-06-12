@@ -180,7 +180,7 @@ const actions = {
         // const data = response
         console.log(response)
         commit('SET_objectListDir', response)
-        resolve()
+        resolve(response)
       }).catch(error => {
         reject(error)
       })

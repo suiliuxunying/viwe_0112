@@ -1,16 +1,53 @@
 <template>
  <div class="hello">
+   <el-card style="margin : 0 0 10px 0">
+          <div style="text-align: left;">
+      <h2>选择文件：</h2>
+      <h4 style="margin: 0 0  15px 0">(默认在：根目录 和 data目录下)</h4>
+              <el-form :inline="true" :model="uploadData" class="demo-form-inline">
+                <el-form-item label="文件库">
+                  <el-select v-model="bucket" placeholder="选择导入的文件库">
+                    <el-option
+                        v-for="item in bucketList"
+                        :key="item.bucketId"
+                        :value="item.bucketName">
+                      </el-option>
+                  </el-select>
+                </el-form-item>
+                <el-form-item label="目录">
+                  <el-select
+                  wide="100"
+                      v-model="dir"
+                      filterable
+                      allow-create
+                      default-first-option
+                      placeholder="支持自定义输入">
+                      <el-option
+                        v-for="item in options"
+                        :key="item.value"
+                        :label="item.label"
+                        :value="item.value">
+                      </el-option>
+                    </el-select>
+                </el-form-item>
+                <el-form-item label="文件名" v-show="fileIsShow">
+                  <el-select v-model="data.fileName" placeholder="选择分析文件">
+                    <el-option
+                        v-for="item in $store.getters.objectListDir"
+                        :key="item.id"
+                        :value="item.name">
+                      </el-option>
+                  </el-select>
+                </el-form-item>
+                <!-- <el-form-item v-show="fileIsShow">
+                  <el-button type="primary"  @click="submitUpload">确认</el-button>
+                </el-form-item> -->
+            </el-form>
+          </div>
+   </el-card >
       <el-card class="box-card">
-        <div slot="header" class="clearfix">
-          <el-tag type="success">文件：</el-tag>
-          <el-select v-model="data.fileName" placeholder="请选择分析文件">
-            <el-option
-              v-for="(item ,index) in fileNameList"
-              :key="index"
-              :label="item"
-              :value="item">
-            </el-option>
-          </el-select>
+        <div slot="header" class="clearfix" style="text-align: left;">
+
           <el-tag type="success">步长值：</el-tag>
            <el-input-number v-model="data.step" :min="3" :max="100000" label="选择步长值"></el-input-number>
            <el-tag type="success">关键数据：</el-tag>
@@ -23,7 +60,7 @@
             </el-option>
           </el-select>
 
-          <el-button type="primary" @click="drawLine">开始分析</el-button>
+          <el-button  @click="drawLine" type="success">开始分析</el-button>
         </div>
         <div id="myChart1" style="min-height:600px;">
 
@@ -41,6 +78,32 @@ export default {
   },
   data () {
     return {
+      // 获取文件相关
+      // 目录接收值
+      dir: '',
+      bucket: ' ',
+      options: [{
+        value: '/',
+        label: '/ (根目录,有助于性能）'
+      }, {
+        value: '/data/',
+        label: '/data/ (存分析数据推荐目录)'
+      }],
+      bucketList: [{
+        creator: '小明',
+        bucketId: '1',
+        createTime: '2016-05-02',
+        bucketName: '王小虎',
+        detail: '上海市普陀区金沙江路 1518 弄'
+      }],
+      // 获得目录下的文件
+      fileList: [],
+      uploadData: {
+        bucket: '',
+        key: '',
+        file: ''
+      },
+      fileIsShow: false,
       curveData: [],
       line: {
 
@@ -62,6 +125,15 @@ export default {
     }
   },
   mounted () {
+    this.$store.dispatch('getBucket')
+      .then(() => {
+        this.bucketList = this.$store.getters.bucketList
+        // console.log(this.$store.getters)
+      })
+      .catch(error => {
+        console.log(error)
+      })
+
     this.$store.dispatch('getKeyValue', {})
       .then(() => {
         this.keyValueList = this.$store.state.visual.keyValueList
@@ -78,6 +150,20 @@ export default {
       })
   },
   methods: {
+    submitUpload () {},
+    getfile () {
+      if (this.dir !== '' && this.bucket !== '') {
+        this.fileIsShow = true
+
+        this.$store.dispatch('getObjectlistdir', { bucket: this.bucket, dir: this.dir })
+          .then(() => {
+            this.flieList = this.$store.getters.objectListDir
+          })
+          .catch(error => {
+            console.log(error)
+          })
+      }
+    },
     drawLine () {
       // 基于准备好的dom，初始化echarts实例
       const myChart1 = this.$echarts.init(document.getElementById('myChart1'))
@@ -240,6 +326,18 @@ export default {
       }
       myChart1.setOption(optionMain1)
       console.log(optionMain1)
+    }
+  },
+  watch: {
+    bucket: function (val, oldVal) {
+      console.log(val + oldVal)
+      // 触发文件选择器出现 获取文件类表
+      this.getfile()
+    },
+    dir: function (val, oldVal) {
+      console.log(val + oldVal)
+      // 触发文件选择器出现 获取文件类表
+      this.getfile()
     }
   }
 }

@@ -142,9 +142,10 @@ export default {
   methods: {
     // 当设置了取消自动上传的时候，调用此方法开始上传
     submitUpload () {
-      if (this.uploadData.bucket !== '' && this.uploadData.key !== '') {
+      if (this.uploadData.bucket !== '' && this.dir !== '') {
         this.$refs.upload.submit()
       } else {
+        console.log(this.$data)
         this.dialogMessage = '您没有选择完整信息。'
         this.dialogVisible = true
       }
@@ -168,7 +169,7 @@ export default {
       console.log('上传前')
       console.log(file)
       // 设置文件上传需要的参数
-      if (file != null && this.uploadData.bucket !== '' && this.uploadData.key !== '') {
+      if (this.uploadData.bucket !== '' && this.dir !== '') {
         this.uploadData.key = this.dir + file.name
         this.uploadData.mediaType = getFileType(file.name)
         this.message.error = ('文件类型为：' + file.type)

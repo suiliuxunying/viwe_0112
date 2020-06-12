@@ -3,12 +3,9 @@
   <div class="hander">
     <el-menu router  :default-active = "$route.path" class="el-menu-demo" mode="horizontal" @select="handleSelect">
       <el-menu-item index="/View/main/MainPage" style="font-size: 20px;margin-right:0px;" >🕋  装备作战数据分析平台</el-menu-item>
-      <el-menu-item index="/View/main/RealTime" >数据分析</el-menu-item>
+      <!-- <el-menu-item index="/View/main/RealTime" >数据分析</el-menu-item>
       <el-menu-item index="/View/main/makeCurve">数据预测</el-menu-item>
-      <el-menu-item index="/View/main/FileHome/BucketList">文件服务</el-menu-item>
-
-      <!--<el-menu-item index="3">小区</el-menu-item>-->
-      <!--<el-menu-item index="4">成交</el-menu-item>-->
+      <el-menu-item index="/View/main/FileHome/BucketList">文件服务</el-menu-item> -->
 
       <el-menu-item  index="user"  style="float:right;">
         <el-button type="text" @click="userTo">👨‍{{userData.avatar}}的主页</el-button>
@@ -18,17 +15,15 @@
       <!--<el-menu-item index="User"  style="float:right;"-->
       <!--&gt;用户中心</el-menu-item>-->
       <!--<div style="height:100%;float:right;">新增服务1</div>-->
-      <el-submenu index="7" style="float:right;">
-        <template slot="title">更多服务</template>
-         <el-submenu index="2-5">
-          <template slot="title" >集群服务入口</template>
-            <el-menu-item index="2-5-1" ><a href="http://vm0:50070" target="_blank">hadoop</a></el-menu-item>
-            <el-menu-item  index="2-5-2"><a href="http://vm0:5050" target="_blank">mesos</a></el-menu-item>
-            <el-menu-item  index="2-5-3"><a href="http://vm0:8080" target="_blank">marathon</a></el-menu-item>
-            <el-menu-item  index="2-5-4"><a href="http://vm0:8080" target="_blank">marathon</a></el-menu-item>
-            <el-menu-item  index="2-5-5"><a href="http://vm0:8080" target="_blank">marathon</a></el-menu-item>
-            <el-menu-item  index="2-5-6" ><a href="http://vm0:60010" target="_blank">hbase</a></el-menu-item>
-        </el-submenu>
+      <el-submenu index="7"  style="float:right;">
+        <template slot="title" >更多服务</template>
+          <el-menu-item-group>
+          <template slot="title">集群管理配置</template>
+            <el-menu-item ><a href="http://vm0:50070" target="_blank">hadoop</a></el-menu-item>
+            <el-menu-item ><a href="http://vm0:5050" target="_blank">mesos</a></el-menu-item>
+            <el-menu-item ><a href="http://vm0:8080" target="_blank">marathon</a></el-menu-item>
+            <el-menu-item ><a href="http://vm0:60010" target="_blank">hbase</a></el-menu-item>
+        </el-menu-item-group>
         <el-menu-item index="2-1">关于我们</el-menu-item>
         <el-menu-item index="2-2">意见反馈</el-menu-item>
         <el-menu-item index="2-3">联系我们</el-menu-item>
