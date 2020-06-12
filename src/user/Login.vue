@@ -84,7 +84,7 @@ export default {
           console.log(this.ruleForm)// 为啥必须要this.ruleForm
           this.$store.dispatch('login', this.ruleForm)
             .then(() => {
-              this.$router.push({ path: '/View/main/mainPage2' })
+              this.$router.push({ path: '/View/Main' })
               this.loading = false
             })
             .catch(error => {

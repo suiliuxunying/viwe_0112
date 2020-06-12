@@ -11,7 +11,7 @@
       >
 <!-- :default-active = "$route.path" /自动定位到已经点击的标签 -->
 
-      <el-menu-item index="/View/main/mainPage2">
+      <el-menu-item index="/View/main/mainPage3">
         <i class="el-icon-s-home"></i>
         <span slot="title">平台主页</span>
       </el-menu-item>

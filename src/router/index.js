@@ -12,6 +12,7 @@ import FileHome from '../file/FileMain'
 import BucketList from '../file/components/Container1'
 import File from '../file/components/ContainerCh'
 import mainPage2 from '../components/mainPage2'
+import mainPage3 from '../components/mainPage3'
 import fileImport from '../file/fileImport'
 import fileSearch from '../file/fileSearch'
 import fileOperate from '../file/fileOperate'
@@ -44,6 +45,7 @@ const router = new Router({
         {
           path: 'Main',
           name: 'Main',
+          redirect: '/View/Main/MainPage3',
           component: Main,
           children: [
             {
@@ -56,6 +58,12 @@ const router = new Router({
               path: 'MainPage2',
               name: 'MainPage2',
               component: mainPage2
+            },
+            // 不合格换一个
+            {
+              path: 'MainPage3',
+              name: 'MainPage3',
+              component: mainPage3
             },
             {
               path: 'fileImport',
