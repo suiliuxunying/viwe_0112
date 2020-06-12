@@ -26,14 +26,18 @@ export default {
 <style scoped>
  .main {
     margin: 0px;
-    padding-bottom: 330px;
+    padding-bottom: 450px;
     /* min-height: 600px; */
     padding-top: 100px;
     width: 100%;
-    background-color: cornsilk;
+    background-color: #ffffff;
     background-image: url(/img/page3.fda11c5b.png);
     background-repeat: no-repeat;
     background-size: 100% auto;
+}
+.el-col[data-v-6090602a] {
+    border-radius: 4px;
+    width: 100%;
 }
 .el-col-offset-2 {
     margin-left:0;
