@@ -67,6 +67,38 @@ export default {
           boundaryGap: [0, '50%'],
           type: 'value'
         },
+        // 图像范围可以调整
+        dataZoom: [
+        // slider 滑动条
+          {
+            type: 'slider',
+            show: true,
+            xAxisIndex: [0],
+            start: 0,
+            end: 100
+          },
+          {
+            type: 'slider',
+            show: true,
+            yAxisIndex: [0],
+            left: '98%',
+            start: 0,
+            end: 100
+          },
+          // inside 鼠标
+          {
+            type: 'inside',
+            xAxisIndex: [0],
+            start: 0,
+            end: 100
+          },
+          {
+            type: 'inside',
+            yAxisIndex: [0],
+            start: 0,
+            end: 100
+          }
+        ],
         series: [
           {
             name: '成交',

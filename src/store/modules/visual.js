@@ -65,7 +65,7 @@ const actions = {
         console.log('makeCurve:')
         console.log(data)
         commit('SET_CurveData', data.list)
-        resolve()
+        resolve(data)
       }).catch(error => {
         reject(error)
       })

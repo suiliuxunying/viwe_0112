@@ -41,6 +41,10 @@ export default {
   },
   data () {
     return {
+      curveData: [],
+      line: {
+
+      },
       data1: {
         fileName: 'bb.txt',
         step: 10,
@@ -83,28 +87,43 @@ export default {
 
       console.log(this.$store)
       this.$store.dispatch('makeCurve', this.data)
-        .then(() => {
+        .then((data) => {
+          this.curveData = data.list
+          // console.log('data')
+          // console.log(data)
+          this.$notify({
+            title: '提示',
+            message: '数据获取成功' + data.code
+          })
+          this.setChartOption(myChart1, data.list)
           myChart1.hideLoading()
         })
         .catch(error => {
           console.log(error)
+          this.$notify({
+            title: '提示',
+            message: '数据获取出错' + error
+          })
         })
-      //  myChart.setOption(...);
-      // });
-      // 绘制图表
+    },
+    setChartOption (myChart1, data) {
+    // 绘制图表
       const optionMain1 = {
+
         title: {
           text: '本地数据分析',
           subtext: '来自模拟数据，仅供测试使用',
           x: 'center'
         },
+
         tooltip: {
           trigger: 'axis'
         },
+
         legend: {
           top: '55px',
           data: [
-            '槽车的温度',
+            '槽车的液位',
             '槽车的压力',
             '储罐的液位',
             '储罐的内部压力',
@@ -116,12 +135,12 @@ export default {
           left: '3%',
           right: '4%',
           bottom: '70px'
-          // containLabel: true
+        // containLabel: true
         },
         toolbox: {
           feature: {
             dataZoom: {
-              // yAxisIndex: 'none'
+            // yAxisIndex: 'none'
             },
             restore: {},
             saveAsImage: {}
@@ -129,13 +148,45 @@ export default {
         },
         xAxis: {
           type: 'time'
-          // nanme: 'timestamp',
-          // boundaryGap: false
-          // data:
+        // nanme: 'timestamp',
+        // boundaryGap: false
+        // data:
         },
         yAxis: {
           type: 'value'
         },
+        // 图像范围可以调整
+        dataZoom: [
+        // slider 滑动条
+          {
+            type: 'slider',
+            show: true,
+            xAxisIndex: [0],
+            start: 0,
+            end: 1
+          },
+          {
+            type: 'slider',
+            show: true,
+            yAxisIndex: [0],
+            left: '98%',
+            start: 0,
+            end: 100
+          },
+          // inside 鼠标
+          {
+            type: 'inside',
+            xAxisIndex: [0],
+            start: 0,
+            end: 1
+          },
+          {
+            type: 'inside',
+            yAxisIndex: [0],
+            start: 0,
+            end: 100
+          }
+        ],
         dataset: {
           dimensions: ['timestamp',
             'tankerPressure',
@@ -144,12 +195,12 @@ export default {
             'storageTankInternalPressure',
             'storageTankLowerTemperature',
             'storageTankUpperTemperature'],
-          source: this.$store.state.visual.curveData
+          source: data
         },
         series: [
           {
             type: 'line',
-            // smooth: true,
+            smooth: true,
             symbol: 'none',
             stack: 'a',
             encode: { x: 'timestamp', y: 1 },
@@ -159,25 +210,30 @@ export default {
             encode: { x: 'timestamp', y: 2 },
             name: '槽车的液位',
             symbol: 'none',
+            smooth: true,
             type: 'line'
           }, {
             encode: { x: 'timestamp', y: 4 },
             name: '储罐的内部压力',
             stack: 'a',
+            smooth: true,
             type: 'line'
 
           }, {
             encode: { x: 'timestamp', y: 5 },
             name: '储罐的下位温度',
+            smooth: true,
             type: 'line'
           }, {
             encode: { x: 'timestamp', y: 6 },
             name: '储罐的上位温度',
+            smooth: true,
             type: 'line'
           },
           {
             encode: { x: 'timestamp', y: 3 },
             name: '储罐的液位',
+            smooth: true,
             type: 'line'
           }
         ]
