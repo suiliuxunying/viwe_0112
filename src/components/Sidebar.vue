@@ -22,10 +22,19 @@
       </el-menu-item>
 
       <!-- /View/main/fileOperate -->
-      <el-menu-item index="/View/main/FileHome/BucketList">
-        <i class="el-icon-menu"></i>
-        <span slot="title">&#8194;文&#8194;件&#8194;库&#8194;</span>
-      </el-menu-item>
+      <el-submenu index="6">
+
+        <template slot="title">
+          <i class="el-icon-menu"></i>
+          <span>&#8194;文&#8194;件&#8194;库&#8194;</span>
+        </template>
+
+        <el-menu-item-group>
+          <el-menu-item index="/View/main/FileHome/BucketList">文件库列表</el-menu-item>
+          <el-menu-item index="/View/main/FileHome/File" disabled>&#8194;&#8194;文件类表</el-menu-item>
+        </el-menu-item-group>
+
+      </el-submenu>
 
        <el-menu-item index="/View/main/fileSearch">
         <i class="el-icon-zoom-in"></i>
@@ -42,7 +51,7 @@
         <span slot="title">实时分析</span>
       </el-menu-item> -->
 
-      <el-submenu index="6">
+      <el-submenu index="9">
 
         <template slot="title">
           <i class="el-icon-loading"></i>

@@ -89,6 +89,7 @@ const router = new Router({
             },
             {
               path: 'FileHome',
+              redirect: '/View/main/FileHome/BucketList',
               name: 'FileHome',
               component: FileHome,
               children: [

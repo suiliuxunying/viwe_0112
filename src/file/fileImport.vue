@@ -203,9 +203,9 @@ export default {
     }
   },
   watch: {
-    isBucketDir: function (val, oldVal) {
-      console.log(val + oldVal)
-    }
+    // isBucketDir: function (val, oldVal) {
+    //   console.log(val + oldVal)
+    // }
   }
 }
 </script>

@@ -17,6 +17,8 @@ const getters = {
   bucketList: state => state.file.bucketList,
   objectListDir: state => state.file.objectListDir,
   routes: state => state.file.routes,
-  isBucketDir: (state) => state.file.isBucketDir
+  isBucketDir: (state) => state.file.isBucketDir,
+  listObject: (state) => state.file.listObject,
+  listObjectByPrefix: (state) => state.file.listObjectByPrefix
 }
 export default getters

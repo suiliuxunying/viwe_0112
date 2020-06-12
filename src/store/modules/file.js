@@ -1,6 +1,6 @@
 
 import { data, getAllParents, rankTime, getChildrenById, deleteItemById, getCheckedFileFromBuffer, clock } from '../data'
-import { getObject, deleteObject, getBucketList, getObjectlistdir, createBucket, deleteBucket, updateBucket } from '../../api/file'
+import { getListObject, listObjectByPrefix, getObject, deleteObject, getBucketList, getObjectlistdir, createBucket, deleteBucket, updateBucket } from '../../api/file'
 import { switchDate } from '../../utils/utils'
 const state = {
   data: data,
@@ -16,7 +16,9 @@ const state = {
   bucketList: [],
   objectListDir: [],
   routes: [],
-  isBucketDir: true
+  isBucketDir: true,
+  listObject: {},
+  listObjectByPrefix: {}
 }
 const mutations = {
   SET_isBucketDir: (state, abool) => {
@@ -49,6 +51,12 @@ const mutations = {
       }
     }
     // console.log(state.routes)
+  },
+  SET_listObjectByPrefix: (state, listObjectByPrefix) => {
+    state.listObjectByPrefix = listObjectByPrefix
+  },
+  SET_listObject: (state, listObject) => {
+    state.listObject = listObject
   }
 
 }
@@ -72,7 +80,46 @@ const getters = {
 }
 
 const actions = {
-
+  listObjectByPrefix ({ commit }, data) {
+    return new Promise((resolve, reject) => {
+      const { dir, bucket, startKey, prefix } = data
+      // 传参到 api
+      listObjectByPrefix(
+        {
+          dir: dir,
+          bucket: bucket,
+          startKey: startKey,
+          prefix: prefix
+        }
+      ).then(response => {
+        // const data = response
+        console.log(response)
+        commit('SET_listObjectByPrefix', response)
+        resolve()
+      }).catch(error => {
+        reject(error)
+      })
+    })
+  },
+  getListObject ({ commit }, data) {
+    return new Promise((resolve, reject) => {
+      const { dir, bucket, endKey, startKey } = data
+      // 传参到 api
+      getListObject({
+        dir: dir,
+        bucket: bucket,
+        endKey: endKey,
+        startKey: startKey
+      }).then(response => {
+        // const data = response
+        console.log(response)
+        commit('SET_listObject', response)
+        resolve()
+      }).catch(error => {
+        reject(error)
+      })
+    })
+  },
   getBucket ({ commit }) {
     return new Promise((resolve, reject) => {
       // 传参到 api
@@ -177,6 +224,7 @@ const actions = {
       })
     })
   },
+
   changeData (state, payload) {
     const newData = payload.newData
     newData.name = payload.newName

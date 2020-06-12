@@ -62,33 +62,32 @@ export function getObject (data) {
     params: data
   })
 }
+
 export function getObjectlistdir (data) {
   return request({
     url: '/hos/v1/object/list/dir',
     method: 'get',
     params: data
-
   })
 }
-export function getObjectList () {
+export function listObjectByPrefix (data) {
+  return request({
+    url: '/hos/v1/object/list/prefix',
+    method: 'get',
+    params: data
+  })
+}
+export function getListObject (data) {
   return request({
     url: '/hos/v1/object/list',
-    method: 'get'
-
+    method: 'get',
+    params: data
   })
 }
 // 总结，概要 summary
 export function getSummary () {
   return request({
     url: '/hos/v1/object/info',
-    method: 'get'
-
-  })
-}
-
-export function listObjectByPrefix () {
-  return request({
-    url: '/hos/v1/object/list/prefix',
     method: 'get'
 
   })

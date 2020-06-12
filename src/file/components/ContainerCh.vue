@@ -66,7 +66,7 @@
         <el-input
           v-model="search"
           size="mini"
-          placeholder="输入关键字搜索文件库"/>
+          placeholder="输入关键字搜索文件"/>
       </template>
 
       <template slot-scope="scope" >

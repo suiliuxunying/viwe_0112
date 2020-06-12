@@ -1,6 +1,7 @@
 <template>
   <div style="width: 100%;margin-top: 10px">
-    <div class="block">
+
+    <el-card shadow="hover">
       <!--<span class="demonstration">Click 指示器触发</span>-->
       <el-carousel trigger="click" height="350px" >
         <el-carousel-item key="0">
@@ -16,9 +17,9 @@
           <img src="../assets/tu.jpg" alt="aa">
         </el-carousel-item>
       </el-carousel>
-      <div style="margin-top: 10px">
-        <el-row :gutter="20" >
-          <el-col :span="20" :offset="2">
+    </el-card>
+     <el-card shadow="hover">
+      <el-col :span="20" :offset="2" >
             <div class="grid-content">
               <div style="margin-top: 20px;text-align:center;font-size: 25px;color: #a4a4a4;">
                 ——--装备作战数据分析平台--——</div>
@@ -28,29 +29,30 @@
               </div>
             </div>
           </el-col>
-        </el-row>
-        <!-- <div style="background-color:  rgba(240, 240, 240, 0.98);height: 300px">
-          <div style="margin: 0 10% -40px 10%;width: 80%;">
+    </el-card>
+    <el-card shadow="hover">
+      <div >
             <div class="bow">
               <img src="../assets/banks/柱状图.png"/>
-              <div class="font">更快的增长率</div>
+              <div class="font">高速</div>
             </div>
+
             <div class="bow">
               <img src="../assets/banks/礼包.png"/>
-              <div class="font">更高活跃度</div>
+              <div class="font">稳定</div>
             </div>
+
             <div class="bow">
               <img src="../assets/banks/钻石.png" />
-              <div class="font">更精准的运营</div>
+              <div class="font">高效</div>
             </div>
+
             <div class="bow">
               <img src="../assets/banks/饼状图.png" />
-              <div class="font">更极致的体验</div>
+              <div class="font">大量</div>
             </div>
-          </div>
-        </div> -->
       </div>
-    </div>
+    </el-card>
   </div>
 </template>
 <script scoped>
@@ -63,6 +65,12 @@ export default {
 }
 </script>
 <style scoped>
+.el-card__body {
+    padding: 10px;
+}
+.el-card {
+    margin: 2ch 0;
+}
   .bow img{
     width: 50%;
     margin: 30px 25%;
@@ -71,7 +79,7 @@ export default {
   .font{
     font-size: 20px;
     color: rgb(36, 101, 128);
-
+    margin: 0 0 10px 0;
   }
   .el-carousel__item img{
     height: 400px;
@@ -79,7 +87,7 @@ export default {
   }
   .bow{
     background-color: rgba(240, 240, 240, 0.98);
-    margin:0 5px;
+    margin:0 5px 20px 5px;
     width:24%;
     text-align: center;
     min-height: 200px;
