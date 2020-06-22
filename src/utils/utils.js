@@ -21,7 +21,7 @@ export function remove (array, val) {
   if (index > -1) {
     array.splice(index, 1)
   }
-  console.log(array)
+  // console.log(array)
   return array
 };
 // 全局等待

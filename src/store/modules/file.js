@@ -22,7 +22,7 @@ const state = {
 }
 const mutations = {
   SET_isBucketDir: (state, abool) => {
-    console.log('SET_isBucketDir:' + abool)
+    // console.log('SET_isBucketDir:' + abool)
     state.isBucketDir = abool
   },
   SET_bucketList: (state, bucketList) => {
@@ -93,7 +93,7 @@ const actions = {
         }
       ).then(response => {
         // const data = response
-        console.log(response)
+        // console.log(response)
         commit('SET_listObjectByPrefix', response)
         resolve()
       }).catch(error => {
@@ -112,7 +112,7 @@ const actions = {
         startKey: startKey
       }).then(response => {
         // const data = response
-        console.log(response)
+        // console.log(response)
         commit('SET_listObject', response)
         resolve()
       }).catch(error => {
@@ -178,7 +178,7 @@ const actions = {
       // 传参到 api
       getObjectlistdir({ dir: dir, bucket: bucket }).then(response => {
         // const data = response
-        console.log(response)
+        // console.log(response)
         commit('SET_objectListDir', response)
         resolve(response)
       }).catch(error => {
@@ -319,7 +319,7 @@ const actions = {
     })
   },
   changeName (state, payload) {
-    console.log(payload)
+    // console.log(payload)
     state.data[payload.id].name = payload.newName
   },
   deleteDate (state) {

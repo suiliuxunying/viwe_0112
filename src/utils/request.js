@@ -8,9 +8,8 @@ import { getToken } from '@/utils/auth'
 // create an axios instance
 const service = axios.create({
 
-  // baseURL: 'http://localhost:9090/file_service',
-
-  baseURL: 'http://localhost:9080',
+  // baseURL: 'http://localhost:9080',
+  baseURL: 'http://marathonlb.com:10003',
 
   //   静态变量声明
   // baseURL: process.env.VUE_APP_BASE_API, // url = base url + request url
@@ -28,7 +27,7 @@ service.interceptors.request.use(
 
   config => {
     // do something before request is sent
-    console.log(store.getters.token)
+    // console.log(store.getters.token)
     // 判断token是否存在 存在就在headers中增加
     if (store.getters.token) {
       // let each request carry token
@@ -62,7 +61,7 @@ service.interceptors.response.use(
   response => {
     const res = response.data
     console.log('request.js: ')
-    console.log(res)
+    // console.log(res)
     // if the custom code is not 20000, it is judged as an error.
     //  是不是有问题判断
     if (res.code !== 20000) {

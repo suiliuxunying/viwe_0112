@@ -171,7 +171,7 @@ export default {
       // 转转转
       myChart1.showLoading()
 
-      console.log(this.$store)
+      // console.log(this.$store)
       this.$store.dispatch('makeCurve', this.data)
         .then((data) => {
           this.curveData = data.list
@@ -325,17 +325,17 @@ export default {
         ]
       }
       myChart1.setOption(optionMain1)
-      console.log(optionMain1)
+      // console.log(optionMain1)
     }
   },
   watch: {
     bucket: function (val, oldVal) {
-      console.log(val + oldVal)
+      // console.log(val + oldVal)
       // 触发文件选择器出现 获取文件类表
       this.getfile()
     },
     dir: function (val, oldVal) {
-      console.log(val + oldVal)
+      // console.log(val + oldVal)
       // 触发文件选择器出现 获取文件类表
       this.getfile()
     }

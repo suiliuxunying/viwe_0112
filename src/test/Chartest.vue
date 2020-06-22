@@ -39,7 +39,7 @@ export default {
   },
   mounted () {
     this.drawLine()
-    console.log(this)
+    // console.log(this)
   },
   methods: {
     // onSubmit () {

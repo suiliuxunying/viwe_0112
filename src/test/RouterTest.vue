@@ -24,7 +24,7 @@ export default {
   methods: {
     test (data) {
       this.$router.push({ path: '/View/MainPage' })
-      console.log(data)
+      // console.log(data)
     }
   }
 }

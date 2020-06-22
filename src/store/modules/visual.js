@@ -59,11 +59,12 @@ const actions = {
     const { fileName, step, keyValue } = data
     return new Promise((resolve, reject) => {
     // 传参到 api
-      makeCurve({ path: 'C:/Users/10703/Desktop/' + fileName, step: step, keyValue: keyValue }).then(response => {
+      // makeCurve({ path: 'C:/Users/10703/Desktop/' + fileName, step: step, keyValue: keyValue }).then(response => {
+      makeCurve({ path: '/appdata/fileservice/' + fileName, step: step, keyValue: keyValue }).then(response => {
         // 返回的数据存入store
         const data = response
-        console.log('makeCurve:')
-        console.log(data)
+        // console.log('makeCurve:')
+        // console.log(data)
         commit('SET_CurveData', data.list)
         resolve(data)
       }).catch(error => {
@@ -107,8 +108,8 @@ const actions = {
         // 返回的数据存入store
         const data = response
         // console.log(data)
-        console.log('store:')
-        console.log(this)
+        // console.log('store:')
+        // console.log(this)
         commit('set_oldItem', this.state.visual.item)
         commit('set_item', data.item)
         resolve()

@@ -242,7 +242,7 @@ export default {
       }
     },
     contextMenu1Handle (e) {
-      console.log('五点')
+      // console.log('五点')
       this.contextMenu1 = true
       let left = e.pageX
       let top = e.pageY
@@ -313,7 +313,7 @@ export default {
       this.contextMenuTop = top + 'px'
     },
     rightHandle2 (name) {
-      console.log(name)
+      // console.log(name)
       this.contextMenu2 = false
       if (name === '3') {
         eventBus.$emit('moveFolderTo')

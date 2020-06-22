@@ -95,7 +95,8 @@ export default {
       // 目录接收值
       dir: '',
       limit: 5,
-      action: 'http://' + 'localhost:9080' + '/hos/v1/object',
+      // action: 'http://' + 'localhost:9080' + '/hos/v1/object',
+      action: 'http://' + 'marathonlb.com:10003' + '/hos/v1/object',
       headers: {
         // 'Content-Type': 'application/json',
         token: getToken()
@@ -136,6 +137,7 @@ export default {
         // console.log(this.$store.getters)
       })
       .catch(error => {
+        // 不让注释
         console.log(error)
       })
   },
@@ -145,20 +147,20 @@ export default {
       if (this.uploadData.bucket !== '' && this.dir !== '') {
         this.$refs.upload.submit()
       } else {
-        console.log(this.$data)
+        // console.log(this.$data)
         this.dialogMessage = '您没有选择完整信息。'
         this.dialogVisible = true
       }
     },
 
     handleRemove (file, fileList) {
-      console.log('删除')
-      console.log(file, fileList)
+      // console.log('删除')
+      // console.log(file, fileList)
     },
     //      预览
     handlePreview (file) {
-      console.log('预览')
-      console.log(file)
+      // console.log('预览')
+      // console.log(file)
     },
     //      超数量
     onExceed (files, fileList) {
@@ -166,8 +168,8 @@ export default {
     },
     //     上传前
     beforeUpload (file) {
-      console.log('上传前')
-      console.log(file)
+      // console.log('上传前')
+      // console.log(file)
       // 设置文件上传需要的参数
       if (this.uploadData.bucket !== '' && this.dir !== '') {
         this.uploadData.key = this.dir + file.name
@@ -179,8 +181,8 @@ export default {
     uploadSuccess (response, file, fileList) {
       this.loadingInstance.close()
       this.message.error = ('上传成功!')
-      console.log('上传成功')
-      console.log(response, file, fileList)
+      // console.log('上传成功')
+      // console.log(response, file, fileList)
       this.dialogMessage = '文件上传成功，可以在文件库中查看。'
       this.dialogVisible = true
     },
@@ -188,9 +190,9 @@ export default {
     onChange () {},
     uploadError (response, file, fileList) {
       this.message.error = ('上传失败！' + response)
-      console.log('上传失败')
+      // console.log('上传失败')
       this.loadingInstance.close()
-      console.log(response, file, fileList)
+      // console.log(response, file, fileList)
       this.dialogMessage = '文件上传失败，请确认您有所上传文件的操作权限。'
       this.dialogVisible = true
     },

@@ -31,7 +31,7 @@ export default {
     padding-top: 100px;
     width: 100%;
     background-color: #ffffff;
-    background-image: url(/img/page3.fda11c5b.png);
+    background-image: url('../assets/page3.png');
     background-repeat: no-repeat;
     background-size: 100% auto;
 }

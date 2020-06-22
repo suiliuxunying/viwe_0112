@@ -314,7 +314,7 @@ export default {
           // 表格数据是list 一行也没办法
           this.listObjectByPrefix.push(this.$store.getters.listObjectByPrefix)
           this.objectListDir = this.$store.getters.listObjectByPrefix.objectList
-          console.log(this)
+          // console.log(this)
           loading.close()
           this.$notify({
             title: '提示',
@@ -340,7 +340,7 @@ export default {
     },
     // 当某一行被双击时会触发该事件 //进入bucket
     rowDblclick (row, column, event) {
-      console.log(row)
+      // console.log(row)
       if (row.length === 0) {
         // 不是文件 跳转
         const bucket = row.bucket
@@ -360,7 +360,7 @@ export default {
       console.log(index, row)
     },
     handleExport (row) {
-      console.log(row)
+      // console.log(row)
       this.$store.dispatch('getObject', { bucket: row.bucket, key: row.key, name: row.name })
         .then((message) => {
           console.log(message)
@@ -370,7 +370,7 @@ export default {
         })
     },
     handleDelete (index, row) {
-      console.log(row)
+      // console.log(row)
       const loading = loadingRun('数据库疯狂响应中...')
       this.$store.dispatch('deleteObject', { bucket: row.bucket, key: row.key })
         .then(message => {

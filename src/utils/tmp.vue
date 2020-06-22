@@ -23,12 +23,12 @@ export default {
   methods: {
     test (data) {
       alert('submit!')
-      console.log(data)
+      // console.log(data)
     }
   },
   watch: {
     isBucketDir: function (val, oldVal) {
-      console.log(val + oldVal)
+      // console.log(val + oldVal)
     }
   }
 }

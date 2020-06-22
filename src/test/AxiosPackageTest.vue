@@ -26,7 +26,7 @@ export default {
   },
   methods: {
     test (Data) {
-      console.log(Data)
+      // console.log(Data)
       const _this = this// 很重要！！
       login(Data).then(response => {
         _this.msg = response

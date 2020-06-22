@@ -106,7 +106,7 @@ export default {
   methods: {
     // 当某一行被双击时会触发该事件 //进入bucket
     rowDblclick (row, column, event) {
-      console.log(row, column)
+      // console.log(row, column)
       const bucket = row.bucketName
       this.$router.push({
         path: '/View/main/FileHome/File',
@@ -120,7 +120,7 @@ export default {
     },
 
     handleEdit (index, row) {
-      console.log(index, row)
+      // console.log(index, row)
     },
     handleDelete (index, row) {
       const loading = loadingRun('数据库疯狂响应中...')

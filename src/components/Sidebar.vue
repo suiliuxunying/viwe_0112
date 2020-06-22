@@ -75,13 +75,18 @@
         </template>
         <el-menu-item-group>
           <template slot="title"></template>
-        <el-menu-item ><a href="http://vm0:50070 " target="_blank">&#32;HADOOP&#32;集群管理</a></el-menu-item>
-        <el-menu-item ><a href="http://vm0:5050  " target="_blank">&#32;MESOS&#32;平台管理</a></el-menu-item>
-        <el-menu-item ><a href="http://vm0:8080 "  target="_blank">MARATHON&#32;应用管理</a></el-menu-item>
-        <el-menu-item ><a href="http://vm0:60010"  target="_blank">&#32;HBASE&#32;集群管理</a></el-menu-item>
+        <el-menu-item ><a href="http://hadoop:50070 " target="_blank">&#32;HADOOP&#32;集群管理</a></el-menu-item>
+        <el-menu-item ><a href="http://mesos:5050  " target="_blank">&#32;MESOS&#32;平台管理</a></el-menu-item>
+        <el-menu-item ><a href="http://marathon:8080 "  target="_blank">MARATHON&#32;应用管理</a></el-menu-item>
+        <el-menu-item ><a href="http://hbase:60010"  target="_blank">&#32;HBASE&#32;集群管理</a></el-menu-item>
+        <el-menu-item ><a href="http://marathonlb.com:9090/haproxy?stats"  target="_blank">&#32;MLB&#32;应用状态</a></el-menu-item>
         </el-menu-item-group>
       </el-submenu>
 
+      <el-menu-item index="/View/main/ospage">
+        <i class="el-icon-c-scale-to-original"></i>
+        <span slot="title">OS</span>
+      </el-menu-item>
       <!-- <el-menu-item index="4" disabled>
         <i class="el-icon-document"></i>
         <span slot="title">导航三</span>
@@ -112,10 +117,10 @@ export default {
   },
   methods: {
     handleOpen (key, keyPath) {
-      console.log(key, keyPath)
+      // console.log(key, keyPath)
     },
     handleClose (key, keyPath) {
-      console.log(key, keyPath)
+      // console.log(key, keyPath)
     }
   }
 }

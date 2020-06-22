@@ -54,7 +54,8 @@ export default {
     return {
       dir: this.$route.query.dir,
       limit: 2,
-      action: 'http://localhost:9080/hos/v1/object',
+      action: 'http://marathonlb.com:10003/hos/v1/object',
+      // action: 'http://localhost:9080/hos/v1/object',
       headers: {
         // 'Content-Type': 'application/json',
         token: getToken()
@@ -85,13 +86,13 @@ export default {
     },
 
     handleRemove (file, fileList) {
-      console.log('删除')
-      console.log(file, fileList)
+      // console.log('删除')
+      // console.log(file, fileList)
     },
     //      预览
     handlePreview (file) {
-      console.log('预览')
-      console.log(file)
+      // console.log('预览')
+      // console.log(file)
     },
     //      超数量
     onExceed (files, fileList) {
@@ -99,8 +100,8 @@ export default {
     },
     //     上传前
     beforeUpload (file) {
-      console.log('上传前')
-      console.log(file)
+      // console.log('上传前')
+      // console.log(file)
       // 设置文件上传需要的参数
       this.uploadData.key = this.dir + file.name
       this.uploadData.mediaType = getFileType(file.name)
@@ -110,8 +111,8 @@ export default {
     uploadSuccess (response, file, fileList) {
       this.loadingInstance.close()
 
-      console.log('上传成功')
-      console.log(response, file, fileList)
+      // console.log('上传成功')
+      // console.log(response, file, fileList)
     },
     beforeRemove () {},
     onChange () {},
@@ -119,17 +120,17 @@ export default {
       this.message.error = ('上传失败！' + response)
       console.log('上传失败')
       this.loadingInstance.close()
-      console.log(response, file, fileList)
+      // console.log(response, file, fileList)
     },
     putimagsname () {
-      console.log('putimagsname')
+      // console.log('putimagsname')
       this.$emit('getImagsName', this.$data.imagsName)
       //        this.$emit("submit",this.$data.form);
     },
     getBucketName () {
       this.uploadData.bucket = this.$store.getters.routes[0].name
-      console.log('this.uploadData')
-      console.log(this.uploadData)
+      // console.log('this.uploadData')
+      // console.log(this.uploadData)
     }
   }
 }

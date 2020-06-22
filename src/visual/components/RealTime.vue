@@ -114,7 +114,7 @@ export default {
         ]
       }
       myChart1.setOption(optionMain1)
-      console.log(optionMain1)
+      // console.log(optionMain1)
       this.updata(myChart1, 1000 * this.data.interval)
     },
     updata (myChart1, time) {
@@ -132,7 +132,7 @@ export default {
                 data: this_.$store.state.visual.itemlist[this_.data.keyValue]
               }]
             })
-            console.log(this_)
+            // console.log(this_)
           })
           .catch(error => {
             console.log(error)

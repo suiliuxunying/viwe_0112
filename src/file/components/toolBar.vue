@@ -132,11 +132,11 @@ export default {
       for (const key in data) {
         if (data[key].pId === 0) {
           const item = data[key]
-          console.log(item)
+          // console.log(item)
           dataNew[0].children.push(dataHandle(data, item.id))
         }
       }
-      console.log(dataNew)
+      // console.log(dataNew)
       return dataNew
     }
   },

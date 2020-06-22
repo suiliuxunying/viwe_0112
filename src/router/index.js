@@ -16,14 +16,15 @@ import mainPage3 from '../components/mainPage3'
 import fileImport from '../file/fileImport'
 import fileSearch from '../file/fileSearch'
 import fileOperate from '../file/fileOperate'
-
+import ospage from '@/IFrame/OSPage'
+import ositem from '@/IFrame/OSItem'
 // import { getToken } from '../utils/auth'
 Vue.use(Router)
 const router = new Router({
   mode: 'history',
   routes: [
     {
-      // 其实应该到主页，但是还没有主页 也没有token认证
+
       path: '/',
       redirect: '/View/Login'
     },
@@ -64,6 +65,16 @@ const router = new Router({
               path: 'MainPage3',
               name: 'MainPage3',
               component: mainPage3
+            },
+            {
+              path: 'ositem',
+              name: 'ositem',
+              component: ositem
+            },
+            {
+              path: 'ospage',
+              name: 'ospage',
+              component: ospage
             },
             {
               path: 'fileImport',

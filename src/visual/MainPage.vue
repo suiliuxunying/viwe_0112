@@ -79,11 +79,11 @@ export default {
   methods: {
     test (data) {
       alert('submit!')
-      console.log(data)
+      // console.log(data)
     },
     // 手风琴
     handleChange (val) {
-      console.log(val)
+      // console.log(val)
     }
   }
 }

@@ -3,12 +3,12 @@
     <Header/>
     <div class="container">
         <el-row :gutter="20" style="margin-left: 0px; margin-right: 0px;">
-            <el-col :span="5"><div class="left grid-content bg-purple">
+            <el-col :span="5" style="padding-left: 0px; padding-right: 0px;"><div class="left grid-content bg-purple">
 
                 <Sideber style=" height: 100%;"/>
 
             </div></el-col>
-            <el-col :span="19" ><div class="right grid-content bg-purple">
+            <el-col :span="19" style="padding-left: 0px; padding-right: 0px;" ><div class="right grid-content bg-purple">
                  <router-view style=" height: 100%;"/>
             </div>
             </el-col>
@@ -42,7 +42,7 @@ export default {
   },
   methods: {
     handleSelect (key, keyPath) {
-      console.log(key, keyPath)
+      // console.log(key, keyPath)
     }
   }
 }
@@ -58,7 +58,7 @@ export default {
     float: right;
 }
 .right {
-  margin: 10px auto 10px auto;
+  margin: 0px auto 0px auto;
 }
 /* 顶部导航栏边距 */
 .el-menu--horizontal {

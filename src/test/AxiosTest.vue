@@ -27,7 +27,7 @@ export default {
   },
   methods: {
     test (Data) {
-      console.log(Data)
+      // console.log(Data)
       const _this = this// 很重要！！
       Axios({
         method: 'post',
@@ -36,7 +36,7 @@ export default {
         data: Data
       })
         .then(function (response) {
-          console.log(response)
+          // console.log(response)
           //   这样修改data()中的数据
           _this.msg = response
         })

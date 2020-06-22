@@ -81,7 +81,7 @@ export default {
   },
   methods: {
     createBucketM () {
-      console.log('新建bucket：' + this.createBucket)
+      // console.log('新建bucket：' + this.createBucket)
       // 确定后 转圈圈
       const loadingInstance = loadingRun('数据库疯狂响应中...')
       // 以服务的方式调用的 Loading 需要异步关闭
@@ -104,8 +104,8 @@ export default {
     },
     getImagsName (imagsName) {
       this.$data.form.imagsName = imagsName
-      console.log('this.$data.form.imagsName')
-      console.log(this.$data.form.imagsName)
+    //   console.log('this.$data.form.imagsName')
+    //   console.log(this.$data.form.imagsName)
     },
     upLode () {}
   }

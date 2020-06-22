@@ -37,7 +37,7 @@ const actions = {
       // 传参到 api  //需要接收的命名
       login({ username: userId, password: pass }).then(response => {
         const data = response
-        console.log(response)
+        // console.log(response)
         commit('SET_TOKEN', data.token)
         // 存cookie
         setToken(data.token)

@@ -19,10 +19,11 @@
         <template slot="title" >更多服务</template>
           <el-menu-item-group>
           <template slot="title">集群管理配置</template>
-            <el-menu-item ><a href="http://vm0:50070" target="_blank">hadoop</a></el-menu-item>
-            <el-menu-item ><a href="http://vm0:5050" target="_blank">mesos</a></el-menu-item>
-            <el-menu-item ><a href="http://vm0:8080" target="_blank">marathon</a></el-menu-item>
-            <el-menu-item ><a href="http://vm0:60010" target="_blank">hbase</a></el-menu-item>
+        <el-menu-item ><a href="http://hadoop:50070 " target="_blank">&#32;HADOOP&#32;集群管理</a></el-menu-item>
+        <el-menu-item ><a href="http://mesos:5050  " target="_blank">&#32;MESOS&#32;平台管理</a></el-menu-item>
+        <el-menu-item ><a href="http://marathon:8080 "  target="_blank">MARATHON&#32;应用管理</a></el-menu-item>
+        <el-menu-item ><a href="http://hbase:60010"  target="_blank">&#32;HBASE&#32;集群管理</a></el-menu-item>
+        <el-menu-item ><a href="http://marathonlb.com:9090/haproxy?stats"  target="_blank">&#32;MLB&#32;应用状态</a></el-menu-item>
         </el-menu-item-group>
         <el-menu-item index="2-1">关于我们</el-menu-item>
         <el-menu-item index="2-2">意见反馈</el-menu-item>
@@ -54,8 +55,8 @@ export default {
   },
   watch: {
     userState: function (val, oldVal) {
-      console.log('handerGetUser:')
-      console.log(val)
+      // console.log('handerGetUser:')
+      // console.log(val)
       if (val === 1) {
         this.$data.state = true
         this.$data.activeIndex = 'MainPageMain'
