@@ -1,14 +1,21 @@
 import { getToken, removeToken, setToken } from '@/utils/auth'
-import { login } from '@/api/user'
+import { login, getUserInfo, updateUserInfo, deleteUser, createUser } from '@/api/user'
 const state = {
   token: getToken(),
   name: '',
   avatar: '',
   introduction: '',
-  roles: []
+  roles: [],
+  userInfo: {}
 }
 
 const mutations = {
+  SET_userInfo: (state, userInfo) => {
+    state.userInfo = userInfo
+  },
+  SET_userInfo2: (state, detail) => {
+    state.userInfo.detail = detail
+  },
   SET_TOKEN: (state, token) => {
     state.token = token
   },
@@ -29,7 +36,7 @@ const mutations = {
 const actions = {
   // user login
   login ({ commit }, userInfo) {
-    //   ??
+    //   调用设置参数的函数
     commit('SET_NAME', userInfo.userId)
     // login.vue中的命名
     const { userId, pass } = userInfo
@@ -47,7 +54,67 @@ const actions = {
       })
     })
   },
-
+  getUserInfo ({ commit }) {
+    return new Promise((resolve, reject) => {
+      // 传参到 api  //需要接收的命名
+      getUserInfo().then(response => {
+        const data = response.data
+        // console.log(response)
+        commit('SET_userInfo', data)
+        resolve(data)
+      }).catch(error => {
+        reject(error)
+      })
+    })
+  },
+  updateUserInfo ({ commit }, userInfo) {
+    const { password, detail } = userInfo
+    return new Promise((resolve, reject) => {
+      // 传参到 api  //需要接收的命名
+      // console.log(password + detail)//没问题
+      const formData = new FormData()
+      formData.append('password', password)
+      formData.append('detail', detail)
+      updateUserInfo(formData).then(response => {
+        // 密码后台加密了，没有用到 就先不换了
+        commit('SET_userInfo2', detail)
+        resolve(response.message)
+      }).catch(error => {
+        reject(error)
+      })
+    })
+  },
+  deleteUser ({ commit }, userInfo) {
+    const { userId } = userInfo
+    return new Promise((resolve, reject) => {
+      // 传参到 api  //需要接收的命名
+      deleteUser({ userId: userId }).then(response => {
+        // 存cookie
+        resolve(response.message)
+        resolve()
+      }).catch(error => {
+        reject(error)
+      })
+    })
+  },
+  createUser ({ commit }, userInfo) {
+    const { userName, password, detail, role, email } = userInfo
+    return new Promise((resolve, reject) => {
+      const formData = new FormData()
+      formData.append('password', password)
+      formData.append('userName', userName)
+      formData.append('detail', detail)
+      formData.append('role', role)
+      formData.append('email', email)
+      // 传参到 api  //需要接收的命名
+      createUser(formData).then(response => {
+        // 存cookie
+        resolve(response.data)
+      }).catch(error => {
+        reject(error)
+      })
+    })
+  },
   //   // get user info
   //   getInfo ({ commit, state }) {
   //     return new Promise((resolve, reject) => {
@@ -104,7 +171,7 @@ const actions = {
       commit('SET_TOKEN', '')
       //   commit('SET_ROLES', [])
       removeToken()
-      resolve()
+      resolve('退出成功！')
     })
   }
 

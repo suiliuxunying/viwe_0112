@@ -18,7 +18,10 @@ import fileSearch from '../file/fileSearch'
 import fileOperate from '../file/fileOperate'
 import ospage from '@/IFrame/OSPage'
 import ositem from '@/IFrame/OSItem'
-// import { getToken } from '../utils/auth'
+import clusteritem from '@/IFrame/ClusterItem'
+import clusterpage from '@/IFrame/ClusterPage'
+import vmpage from '@/IFrame/VMPage'
+import { getToken } from '../utils/auth'
 Vue.use(Router)
 const router = new Router({
   mode: 'history',
@@ -46,7 +49,7 @@ const router = new Router({
         {
           path: 'Main',
           name: 'Main',
-          redirect: '/View/Main/MainPage3',
+          redirect: '/View/main/MainPage3',
           component: Main,
           children: [
             {
@@ -66,16 +69,29 @@ const router = new Router({
               name: 'MainPage3',
               component: mainPage3
             },
+
             {
               path: 'ositem',
               name: 'ositem',
               component: ositem
-            },
-            {
+            }, {
               path: 'ospage',
               name: 'ospage',
               component: ospage
+            }, {
+              path: 'clusteritem',
+              name: 'clusteritem',
+              component: clusteritem
+            }, {
+              path: 'clusterpage',
+              name: 'clusterpage',
+              component: clusterpage
+            }, {
+              path: 'vmpage',
+              name: 'vmpage',
+              component: vmpage
             },
+
             {
               path: 'fileImport',
               name: 'fileImport',
@@ -134,14 +150,14 @@ const router = new Router({
     }
   ]
 })
-// router.beforeEach((to, from, next) => {
-//   // console.log(to.path)
-//   if (to.path !== '/View/Login') {
-//     console.log(getToken())
-//     if (getToken() === null) {
-//       return next({ path: '/View/Login' })
-//     }
-//   }
-//   next()
-// })
+router.beforeEach((to, from, next) => {
+  // console.log(to.path)
+  if (to.path !== '/View/Login') {
+    console.log(getToken())
+    if (getToken() === null) {
+      return next({ path: '/View/Login' })
+    }
+  }
+  next()
+})
 export default router

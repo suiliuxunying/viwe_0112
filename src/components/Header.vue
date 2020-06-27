@@ -2,13 +2,13 @@
   <!--template下只能放一个组件-->
   <div class="hander">
     <el-menu router  :default-active = "$route.path" class="el-menu-demo" mode="horizontal" @select="handleSelect">
-      <el-menu-item index="/View/main/MainPage" style="font-size: 20px;margin-right:0px;" >🕋  装备作战数据分析平台</el-menu-item>
+      <el-menu-item index="/View/main/MainPage3" style="font-size: 20px;margin-right:0px;" >🕋  装备作战数据分析平台</el-menu-item>
       <!-- <el-menu-item index="/View/main/RealTime" >数据分析</el-menu-item>
       <el-menu-item index="/View/main/makeCurve">数据预测</el-menu-item>
       <el-menu-item index="/View/main/FileHome/BucketList">文件服务</el-menu-item> -->
 
-      <el-menu-item  index="user"  style="float:right;">
-        <el-button type="text" @click="userTo">👨‍{{userData.avatar}}的主页</el-button>
+      <el-menu-item  index="/View/main/user"  style="float:right;">
+        <el-button type="text" index="userTo">👨 ‍{{userData}} 的个人中心</el-button>
       </el-menu-item>
 
       <!--disabled-->
@@ -18,7 +18,7 @@
       <el-submenu index="7"  style="float:right;">
         <template slot="title" >更多服务</template>
           <el-menu-item-group>
-          <template slot="title">集群管理配置</template>
+          <template slot="title">集群管理主页</template>
         <el-menu-item ><a href="http://hadoop:50070 " target="_blank">&#32;HADOOP&#32;集群管理</a></el-menu-item>
         <el-menu-item ><a href="http://mesos:5050  " target="_blank">&#32;MESOS&#32;平台管理</a></el-menu-item>
         <el-menu-item ><a href="http://marathon:8080 "  target="_blank">MARATHON&#32;应用管理</a></el-menu-item>
@@ -48,7 +48,7 @@ export default {
     return {
       state: false, // 0:未登录 1：登录
       activeIndex: 'MainPageMain',
-      userData: {},
+      userData: this.$store.getters.userInfo.userName,
       userState: 1,
       ip: 'vm0'
     }

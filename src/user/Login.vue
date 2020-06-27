@@ -61,8 +61,8 @@ export default {
     return {
       loading: false,
       ruleForm: {
-        userId: '1',
-        pass: '1'
+        userId: '',
+        pass: ''
       },
       rules: {
         userId: [
@@ -84,7 +84,7 @@ export default {
           // console.log(this.ruleForm)// 为啥必须要this.ruleForm
           this.$store.dispatch('login', this.ruleForm)
             .then(() => {
-              this.$router.push({ path: '/View/Main' })
+              this.$router.push({ path: '/View/main' })
               this.loading = false
             })
             .catch(error => {

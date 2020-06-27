@@ -382,11 +382,11 @@ export default {
           this.objectListDir.splice(index, 1)
         })
         .catch(error => {
-          loading.close()
-          this.$notify({
-            title: '提示',
-            message: '删除文件出错' + error
-          })
+          loading.close(error)
+          // this.$notify({
+          //   title: '提示',
+          //   message: '删除文件出错' + error
+          // })
         })
     }
   },
